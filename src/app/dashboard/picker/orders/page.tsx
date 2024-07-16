@@ -1,9 +1,12 @@
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import OrdersService from "@/services/server/OrdersService";
 import { Check, Info, Map } from "lucide-react";
 
-export default function Component() {
+export default async function  PickerOrdersPage() {
+  const {data} = await OrdersService.findAllPickerOrders();
+  
   return (
     <div className="container p-0 overflow-hidden">
       <h1 className="text-3xl font-bold mb-6">Pedidos de Reciclaje</h1>

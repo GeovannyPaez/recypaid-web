@@ -35,6 +35,24 @@ class OrdersService extends ApiService {
             throw this.handlerError(error);
         }
     }
+    async findAllPickerOrders(): Promise<PaginationResponse<OrderList>> {
+        try {
+            const headers = await this.authHeaders();
+            const response = await api.get<PaginationResponse<OrderList>>(`${this.pathName}/all`, headers);
+            return response.data;
+        } catch (error) {
+            throw this.handlerError(error);
+        }
+    }
+    async getCurrentPickerOrder(): Promise<Order | null> {
+        try {
+            const headers = await this.authHeaders();
+            const response = await api.get<Order>(`${this.pathName}/current-picker`, headers);
+            return response.data;
+        } catch (error) {
+            return null
+        }
+    }
 }
 
 export default OrdersService.getInstance();
