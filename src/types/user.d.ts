@@ -1,9 +1,5 @@
+import { Role } from "@/config/routes";
 
-export enum Role {
-    ADMIM,
-    USER,
-    PICKER
-}
 
 export type User = {
     id: string;

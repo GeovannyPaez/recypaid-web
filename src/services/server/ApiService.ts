@@ -27,9 +27,10 @@ export class ApiService {
             if (error.response?.status === 404) {
                 throw new ResponseError(error.response.data.message, ResponseErrorType.NOT_FOUND)
             }
-
+            if (error.response?.status === 409) {
+                throw new ResponseError(error.response.data.message, ResponseErrorType.CONFLICT)
+            }
         }
-        console.log(error);
         throw new ResponseError("Error in request");
     }
 

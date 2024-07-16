@@ -1,4 +1,4 @@
-import { CreateOrderDto, Order, OrderList } from "@/types/orders";
+import { CreateOrderDto, OrderDetails, OrderList } from "@/types/orders";
 import { ApiService } from "./ApiService";
 import api from "@/lib/api";
 import { PaginationResponse } from "@/types/pagination";
@@ -44,13 +44,40 @@ class OrdersService extends ApiService {
             throw this.handlerError(error);
         }
     }
-    async getCurrentPickerOrder(): Promise<Order | null> {
+    async getCurrentPickerOrder(): Promise<OrderDetails | null> {
         try {
             const headers = await this.authHeaders();
-            const response = await api.get<Order>(`${this.pathName}/current-picker`, headers);
+            const response = await api.get<OrderDetails>(`${this.pathName}/current-picker`, headers);
             return response.data;
         } catch (error) {
             return null
+        }
+    }
+    async orderDetails(orderId: string): Promise<OrderDetails | undefined> {
+        try {
+            const headers = await this.authHeaders();
+            const response = await api.get<OrderDetails>(`${this.pathName}/${orderId}`, headers);
+            return response.data;
+        } catch (error) {
+            return undefined;
+        }
+    }
+    async acceptOrder(orderId: string) {
+        try {
+            const headers = await this.authHeaders();
+            const response = await api.post(`${this.pathName}/${orderId}/accept`, {}, headers);
+            return response.data;
+        } catch (error) {
+            throw this.handlerError(error);
+        }
+    }
+    async rejectOrder(orderId: string) {
+        try {
+            const headers = await this.authHeaders();
+            const response = await api.get(`${this.pathName}/${orderId}/reject`, headers);
+            return response.data;
+        } catch (error) {
+            throw this.handlerError(error);
         }
     }
 }

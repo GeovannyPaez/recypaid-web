@@ -24,12 +24,12 @@ class ProfileService extends ApiService {
         }
     }
 
-    async get(): Promise<CreateUserProfileDto | null> {
+    async get(): Promise<CreateUserProfileDto | undefined> {
         try {
             const response = await api.get(this.pathName, await this.authHeaders());
             return response.data;
         } catch (error) {
-            return null;
+            return undefined;
         }
     }
 

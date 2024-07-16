@@ -1,7 +1,12 @@
-export type SearchParamToNavigation = {
+export interface SearchParamToNavigation {
     limit: number;
     offset: number;
 };
+
+export interface PaginationSearchParamsPage {
+    limit?: string;
+    offset?: string;
+}
 
 export interface PaginationMetadata {
     nextPage: SearchParamToNavigation | null;

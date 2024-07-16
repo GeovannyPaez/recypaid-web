@@ -1,4 +1,5 @@
 import { Material } from "./materilas";
+import { UserProfile } from "./user-profile";
 
 export interface CreateOrderDto {
     materials: CreateOrderItemDto[];
@@ -30,15 +31,28 @@ export interface OrderItem {
     recyclableMaterial: Material;
 }
 
-export interface Order {
+export interface OrderDetails {
     id: string;
     userId: string;
     pickerId: string | null;
     total: number;
     status: OrderStatus;
-    createdAt: string;
-    updatedAt: string;
+    createdAt: Date;
+    updatedAt: Date;
     items: OrderItem[];
+    userLocation: LocationDto
+    user: UserProfile;
+    picker: any | null;
 }
 
-export type OrderList = Order[];
+export type OrderList = OrderFindManyResponseDto[];
+export interface OrderFindManyResponseDto {
+    id: string;
+    user: string;
+    address: string;
+    total: number;
+    materials: string[]
+    picker?: string;
+    createdAt: Date;
+    status: OrderStatus;
+}

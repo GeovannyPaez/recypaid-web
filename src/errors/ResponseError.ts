@@ -8,11 +8,26 @@ export enum ResponseErrorType {
   INTERNAL_SERVER_ERROR = 'INTERNAL_SERVER_ERROR',
   SERVICE_UNAVAILABLE = 'SERVICE_UNAVAILABLE',
   GATEWAY_TIMEOUT = 'GATEWAY_TIMEOUT',
+  CONFLICT = 'CONFLICT',
 }
 
 
 export class ResponseError extends Error {
   constructor(message: string, public type: ResponseErrorType = ResponseErrorType.INTERNAL_SERVER_ERROR) {
     super(message);
+  }
+}
+
+export const errorAction = (message: string): ActionResponse => {
+  return {
+    error: true,
+    message: message
+  }
+}
+
+export const successAction = (message: string): ActionResponse => {
+  return {
+    error: false,
+    message: message
   }
 }
