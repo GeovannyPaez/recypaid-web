@@ -77,12 +77,12 @@ export function DataTable<TData, TValue>({
   return (
     <div className="space-y-4">
       <DataTableToolbar
-      isShowSearchInput={isShowSearchInput}
+        isShowSearchInput={isShowSearchInput}
         columnToVariantFilter={columnToVariantFilter}
         table={table}
         allSearchsParams={allSearchsParams}
       />
-      <div className="rounded-md border overflow-x-auto max-w-xs sm:max-w-sm  md:max-w-none">
+      <div className="rounded-md border overflow-x-auto sm:max-w-sm  md:max-w-none">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -93,9 +93,9 @@ export function DataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   );
                 })}
