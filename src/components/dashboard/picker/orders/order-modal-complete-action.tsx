@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react'
+import React, { useState, useTransition } from 'react'
 import { Button } from '@/components/ui/button'
 import { OrderItem } from '@/types/orders'
 import {
@@ -20,6 +20,9 @@ import * as yup from "yup"
 import { Material } from '@/types/materilas';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { X } from 'lucide-react'
+import { CompleteOrderAction } from '@/actions/orders-actions';
+import useToastActionResponse from '@/hooks/useToastActionResponse';
+import { errorAction } from '@/errors/ResponseError';
 
 type OrderModalCompleteActionProps = {
   orderItems: OrderItem[]
@@ -28,8 +31,9 @@ type OrderModalCompleteActionProps = {
 
 export default function OrderModalCompleteAction({ orderItems, allMaterials }: OrderModalCompleteActionProps) {
   const [open, setOpen] = useState(false)
-  const [additionalMaterials, setAdditionalMaterials] = useState<{id: string, name: string, quantity: number}[]>([])
-
+  const [additionalMaterials, setAdditionalMaterials] = useState<{ materialId: string, name: string, quantity: number }[]>([])
+  const { toastActionResponse } = useToastActionResponse()
+  const [isPendig, handleTransaction] = useTransition();
   // Create a dynamic schema based on orderItems and additionalMaterials
   const formSchema = yup.object().shape({
     ...orderItems.reduce((acc, item) => ({
@@ -56,23 +60,29 @@ export default function OrderModalCompleteAction({ orderItems, allMaterials }: O
     },
   })
 
-  function onSubmit(values: any) {
+  async function onSubmit(values: any) {
     const updatedOrderItems = orderItems.map(item => ({
-      ...item,
+      id: item.id,
       quantity: values[item.id]
     }))
     const newMaterials = additionalMaterials.map((item, index) => ({
-      id: item.id,
-      name: item.name,
+      materialId: item.materialId,
       quantity: values[`additional_${index}`]
-    }))
-    console.log('Updated order items:', updatedOrderItems)
-    console.log('New materials:', newMaterials)
-    setOpen(false)
+    }));
+    const isSomeMaterialEmpty = newMaterials.some(item => !item.materialId || !item.quantity)
+    if (isSomeMaterialEmpty) {
+      toastActionResponse(errorAction('Por favor, complete los campos de los nuevos materiales'))
+      return;
+    }
+    handleTransaction(async () => {
+      const res = await CompleteOrderAction(orderItems[0].orderId, { items: updatedOrderItems, newItems: newMaterials })
+      toastActionResponse(res)
+      if (!res.error) setOpen(false)
+    })
   }
 
   const addNewMaterial = () => {
-    setAdditionalMaterials([...additionalMaterials, { id: '', name: '', quantity: 0 }])
+    setAdditionalMaterials([...additionalMaterials, { materialId: '', name: '', quantity: 0 }])
   }
 
   const removeMaterial = (index: number) => {
@@ -118,9 +128,9 @@ export default function OrderModalCompleteAction({ orderItems, allMaterials }: O
               <div key={index} className="space-y-2">
                 <div className="flex items-center justify-between">
                   <FormLabel>{item.name || 'Nuevo material'}</FormLabel>
-                  <Button 
-                    type="button" 
-                    variant="ghost" 
+                  <Button
+                    type="button"
+                    variant="ghost"
                     size="sm"
                     onClick={() => removeMaterial(index)}
                   >
@@ -128,14 +138,21 @@ export default function OrderModalCompleteAction({ orderItems, allMaterials }: O
                   </Button>
                 </div>
                 <div className="flex space-x-2">
-                  <Select 
+                  <Select
                     onValueChange={(value) => {
                       const newAdditionalMaterials = [...additionalMaterials]
                       const selectedMaterial = allMaterials.find(m => m.id === value)
-                      newAdditionalMaterials[index] = { 
-                        id: value, 
-                        name: selectedMaterial ? `${selectedMaterial.name} [${selectedMaterial.priceBy}]` : '', 
-                        quantity: 0 
+                      newAdditionalMaterials[index] = {
+                        materialId: value,
+                        name: selectedMaterial ? `${selectedMaterial.name} [${selectedMaterial.priceBy}]` : '',
+                        quantity: 0
+                      }
+                      const isExistingMaterial = orderItems.some(item => item.recyclableMaterial.id === value)
+                      if (isExistingMaterial) {
+                        toastActionResponse(errorAction('No puedes añadir un material que ya existe en la orden'))
+                        const index = newAdditionalMaterials.findIndex(m => m.materialId === value)
+                        removeMaterial(index);
+                        return;
                       }
                       setAdditionalMaterials(newAdditionalMaterials)
                     }}
@@ -164,9 +181,9 @@ export default function OrderModalCompleteAction({ orderItems, allMaterials }: O
                 </div>
               </div>
             ))}
-            <Button type="button" onClick={addNewMaterial}>Añadir nuevo material</Button>
+            <Button type="button" size={"sm"} onClick={addNewMaterial}>Añadir nuevo material</Button>
             <DialogFooter>
-              <Button type="submit">Confirmar</Button>
+              <Button isLoading={isPendig} type="submit">Confirmar</Button>
             </DialogFooter>
           </form>
         </Form>

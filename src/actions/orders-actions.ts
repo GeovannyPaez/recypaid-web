@@ -1,7 +1,7 @@
 "use server"
 import getPathNameFromHeaders from "@/lib/get-pathname-from-headers"
 import OrdersService from "@/services/server/OrdersService"
-import { CreateOrderDto } from "@/types/orders"
+import { CompleteOrderDto, CreateOrderDto } from "@/types/orders"
 import { revalidatePath } from "next/cache"
 
 export const CreateOrderAction = async (data: CreateOrderDto): Promise<ActionResponse> => {
@@ -32,4 +32,14 @@ export const AcceptOrderAction = async (orderId: string): Promise<ActionResponse
     revalidatePath(getPathNameFromHeaders())
     return { error: false, message: "Orden aceptada" }
 
+}
+
+export const CompleteOrderAction = async (orderId: string, data: CompleteOrderDto): Promise<ActionResponse> => {
+    try {
+        await OrdersService.completeOrder(orderId, data)
+    } catch (error) {
+        return { error: true, message: 'Error completing order' }
+    }
+    revalidatePath(getPathNameFromHeaders())
+    return { error: false, message: "Orden completada" }
 }

@@ -11,6 +11,15 @@ export interface CreateOrderItemDto {
     materialId: string;
     quantity: number;
 }
+export interface OrderItemDto {
+    id: string;
+    quantity: number;
+}
+
+export interface CompleteOrderDto {
+    items: OrderItemDto[];
+    newItems: CreateOrderItemDto[];
+}
 
 export interface LocationDto {
     latitude: number;

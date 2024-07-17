@@ -1,4 +1,4 @@
-import { CreateOrderDto, OrderDetails, OrderList } from "@/types/orders";
+import { CompleteOrderDto, CreateOrderDto, OrderDetails, OrderList } from "@/types/orders";
 import { ApiService } from "./ApiService";
 import api from "@/lib/api";
 import { PaginationResponse } from "@/types/pagination";
@@ -75,6 +75,16 @@ class OrdersService extends ApiService {
         try {
             const headers = await this.authHeaders();
             const response = await api.get(`${this.pathName}/${orderId}/reject`, headers);
+            return response.data;
+        } catch (error) {
+            throw this.handlerError(error);
+        }
+    }
+
+    async completeOrder(orderId: string, completeOrderDto: CompleteOrderDto) {
+        try {
+            const headers = await this.authHeaders();
+            const response = await api.post(`${this.pathName}/${orderId}/complete`, completeOrderDto, headers);
             return response.data;
         } catch (error) {
             throw this.handlerError(error);
