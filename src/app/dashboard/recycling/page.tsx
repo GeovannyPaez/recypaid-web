@@ -23,10 +23,10 @@ type RecyclingPageProps = {
   }
 }
 
-export default async function RecyclinPage( { searchParams }: RecyclingPageProps) {
-  const materials  = await MaterilasService.getAllMaterials();
+export default async function RecyclinPage({ searchParams }: RecyclingPageProps) {
+  const materials = await MaterilasService.getAllMaterials();
   const userProfile = await ProfileService.get();
-  if(!userProfile) {
+  if (!userProfile) {
     redirect('/dashboard/profile');
   }
 
@@ -39,8 +39,7 @@ export default async function RecyclinPage( { searchParams }: RecyclingPageProps
               Solicitar Reciclaje
             </h1>
             <p className="text-gray-500 dark:text-gray-400">
-              Permita a los usuarios solicitar reciclaje de materiales desde su
-              ubicación. Complete el formulario a continuación para enviar su
+              Complete el formulario a continuación para enviar su
               solicitud.
             </p>
           </div>

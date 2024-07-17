@@ -1,4 +1,5 @@
 "use server"
+import { errorAction, successAction } from "@/errors/ResponseError"
 import getPathNameFromHeaders from "@/lib/get-pathname-from-headers"
 import OrdersService from "@/services/server/OrdersService"
 import { CompleteOrderDto, CreateOrderDto } from "@/types/orders"
@@ -7,9 +8,11 @@ import { revalidatePath } from "next/cache"
 export const CreateOrderAction = async (data: CreateOrderDto): Promise<ActionResponse> => {
     try {
         await OrdersService.create(data)
-        return { error: false, message: "Solicitud con exito, en el transcurso del dia pasaremos por tus materiales" }
+
+        return successAction("Solicitud con exito, en el transcurso del dia pasaremos por tus materiales")
     } catch (error) {
-        return { error: true, message: 'Error creating order' }
+        const err = error as Error
+        return errorAction(err.message)
     }
 }
 
@@ -17,20 +20,22 @@ export const RejectOrderAction = async (orderId: string): Promise<ActionResponse
     try {
         await OrdersService.rejectOrder(orderId)
     } catch (error) {
-        return { error: true, message: 'Error rejecting order' }
+        const err = error as Error
+        return errorAction(err.message)
     }
     revalidatePath(getPathNameFromHeaders())
-    return { error: false, message: "Orden rechazada" }
+    return successAction("Orden rechazada")
 }
 
 export const AcceptOrderAction = async (orderId: string): Promise<ActionResponse> => {
     try {
         await OrdersService.acceptOrder(orderId)
     } catch (error) {
-        return { error: true, message: 'Error accepting order' }
+        const err = error as Error
+        return errorAction(err.message)
     }
     revalidatePath(getPathNameFromHeaders())
-    return { error: false, message: "Orden aceptada" }
+    return successAction("Orden aceptada")
 
 }
 
@@ -38,8 +43,9 @@ export const CompleteOrderAction = async (orderId: string, data: CompleteOrderDt
     try {
         await OrdersService.completeOrder(orderId, data)
     } catch (error) {
-        return { error: true, message: 'Error completing order' }
+        const err = error as Error
+        return errorAction(err.message)
     }
     revalidatePath(getPathNameFromHeaders())
-    return { error: false, message: "Orden completada" }
+    return successAction("Orden completada")
 }

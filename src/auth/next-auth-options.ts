@@ -24,7 +24,7 @@ const nextAuthOptions: NextAuthOptions = {
                         token: user.token,
                     };
                 } catch (error) {
-                    throw { message: "Invalid Credentials or User Not Verified", };
+                    throw { message: "Contraseña o email incorrectos...", };
                 }
             },
         }),

@@ -30,7 +30,11 @@ export class ApiService {
             if (error.response?.status === 409) {
                 throw new ResponseError(error.response.data.message, ResponseErrorType.CONFLICT)
             }
+            if (error.response?.status === 400) {
+                throw new ResponseError(error.response.data.message, ResponseErrorType.BAD_REQUEST)
+            }
         }
+        console.log(error.response.data);
         throw new ResponseError("Error in request");
     }
 

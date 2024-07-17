@@ -1,4 +1,5 @@
 import { Material } from "./materilas";
+import { PaginationSearchParamsPage } from "./pagination";
 import { UserProfile } from "./user-profile";
 
 export interface CreateOrderDto {
@@ -64,4 +65,10 @@ export interface OrderFindManyResponseDto {
     picker?: string;
     createdAt: Date;
     status: OrderStatus;
+}
+
+
+export interface OrderPaginationDto extends PaginationSearchParamsPage {
+    status?: OrderStatus;
+    userId: string;
 }

@@ -10,12 +10,16 @@ import { Material } from "@/types/materilas";
 import { Paperclip } from "lucide-react";
 const ValuesByKilo = [
   {
-    value: "0",
-    label: "0 kg",
+    value: "2",
+    label: "2 kg",
   },
   {
     value: "5",
     label: "5 kg",
+  },
+  {
+    value: "7",
+    label: "7 kg",
   },
   {
     value: "10",
@@ -56,13 +60,25 @@ const ValuesByUnit = [
     value: "5",
     label: "5 unidades",
   },
+  {
+    value: "10",
+    label: "10 unidades"
+  },
+  {
+    value: "15",
+    label: "15 unidades"
+  },
+  {
+    value: "20",
+    label: "20 unidades"
+  }
 ];
 type MaterialCardFormProps = {
   material: Material;
   onChageQuantityMaterial: (value: number, materialId: string) => void;
 };
 
-export default function MaterialCardForm({material, onChageQuantityMaterial}: MaterialCardFormProps) {
+export default function MaterialCardForm({ material, onChageQuantityMaterial }: MaterialCardFormProps) {
   const { name, price, priceBy } = material;
   return (
     <div className="rounded-lg border border-gray-200 p-6 shadow-sm dark:border-gray-800">
@@ -82,15 +98,15 @@ export default function MaterialCardForm({material, onChageQuantityMaterial}: Ma
           <SelectContent>
             {priceBy == "KILO"
               ? ValuesByKilo.map((value) => (
-                  <SelectItem key={value.value} value={value.value}>
-                    {value.label}
-                  </SelectItem>
-                ))
+                <SelectItem key={value.value} value={value.value}>
+                  {value.label}
+                </SelectItem>
+              ))
               : ValuesByUnit.map((value) => (
-                  <SelectItem key={value.value} value={value.value}>
-                    {value.label}
-                  </SelectItem>
-                ))}
+                <SelectItem key={value.value} value={value.value}>
+                  {value.label}
+                </SelectItem>
+              ))}
           </SelectContent>
         </Select>
       </div>

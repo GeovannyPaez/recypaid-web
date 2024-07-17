@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import Logo from "@/components/logo";
 
-export default function Component() {
+export default function Home() {
   return (
     <div key="1" className="flex flex-col min-h-[100dvh]">
       <header className=" bg-primary-foreground text-white py-4 px-6 flex items-center justify-between">
@@ -271,7 +271,7 @@ export default function Component() {
                   <CarouselItem>
                     <div className="p-6 bg-white rounded-lg shadow-sm">
                       <blockquote className="text-lg font-semibold text-muted-foreground leading-relaxed">
-                       {` "Paid Recycling ha sido un gran aliado en mi camino
+                        {` "Paid Recycling ha sido un gran aliado en mi camino
                         hacia una vida más sostenible. Ahora reciclo casi todo y
                         me siento mucho más comprometido con el medio ambiente.
                         ¡Y lo mejor es que me pagan por ello!"`}

@@ -9,6 +9,11 @@ export const OrdersTableColumns: ColumnDef<OrderFindManyResponseDto>[] = [
         accessorKey: "user",
     },
     {
+        header: "Total",
+        accessorKey: "total",
+        cell: ({ row }) => `$${row.original.total}`,
+    },
+    {
         header: "Dirección",
         accessorKey: "address",
     },

@@ -6,8 +6,8 @@ export const VariantsOrderStatus: Variants[] = [
         value: "PENDING",
     },
     {
-        label: "En Proceso",
-        value: "ACEPTED",
+        label: "Aceptado",
+        value: "ACCEPTED",
     },
     {
         label: "Completado",
