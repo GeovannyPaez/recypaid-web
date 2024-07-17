@@ -1,6 +1,6 @@
-import WelcomeBackUser from "@/components/dashboard/shared/welcome-back-user"
-import UserBasicStatistics from "@/components/dashboard/shared/user-basic-statistics"
-import Footer from "@/components/dashboard/shared/footer"
+import WelcomeBackUser from "@/components/shared/welcome-back-user"
+import UserBasicStatistics from "@/components/shared/user-basic-statistics"
+import Footer from "@/components/shared/footer"
 import { Role } from "@/config/routes"
 
 export default async function UserHomePage() {

@@ -25,7 +25,7 @@ export default function LoginPage() {
       </div>
       <div className="hidden bg-muted lg:block">
         <Image
-          src="/secure-login-illustration.svg"
+          src="/phone-recycling.jpeg"
           alt="Imagen"
           width="1920"
           height="1080"
