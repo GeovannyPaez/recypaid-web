@@ -8,6 +8,7 @@ import { Material, SelectMaterialItem } from "@/types/materilas";
 import { CreateOrderDto, CreateOrderItemDto, LocationDto } from "@/types/orders";
 import { CreateOrderAction } from "@/actions/orders-actions";
 import useToastActionResponse from "@/hooks/useToastActionResponse";
+import { useRouter } from "next/navigation";
 
 type RecyclingFormUserProps = {
   materials: Material[];
@@ -20,6 +21,7 @@ export default function RecyclingFormUser({ materials, address, materialIdSelect
     if (!materialIdSelect) return null;
     return materials.find((materia) => materia.id == materialIdSelect);
   }, [materialIdSelect, materials]);
+  const router = useRouter();
 
   const { toastActionResponse } = useToastActionResponse();
   const [isLoading, handleTransition] = useTransition();
@@ -120,7 +122,7 @@ export default function RecyclingFormUser({ materials, address, materialIdSelect
     handleTransition(async () => {
       const res = await CreateOrderAction(data);
       toastActionResponse(res);
-      if (!res.error) setSelectedMaterials([]);
+      if (!res.error) router.push("/dashboard/orders");
     });
   };
 
