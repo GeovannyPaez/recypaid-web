@@ -17,7 +17,7 @@ import {
 import { useCallback } from "react";
 
 import useUpdateSearchParams from "@/hooks/useUpdateSearchParams";
-import { PaginationMetadata,SearchParamToNavigation } from "@/types/pagination";
+import { PaginationMetadata, SearchParamToNavigation } from "@/types/pagination";
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>;
@@ -30,10 +30,10 @@ export function DataTablePagination<TData>({
   pagination,
   allSearchsParams
 }: DataTablePaginationProps<TData>) {
-  const { handleUpdateSearchParams , getValueToSearchParam } = useUpdateSearchParams({ searchParamsInPage: allSearchsParams });
+  const { handleUpdateSearchParams, getValueToSearchParam } = useUpdateSearchParams({ searchParamsInPage: allSearchsParams });
 
   const size = getValueToSearchParam("limit") || "10";
-  
+
   const {
     nextPage,
     backPage,
@@ -53,29 +53,32 @@ export function DataTablePagination<TData>({
         ]);
       }
     },
-    [ handleUpdateSearchParams]
+    [handleUpdateSearchParams]
   );
 
   const handlePageSizeChange = useCallback(
     (value: string) => {
       handleUpdateSearchParams([{ key: "limit", value }]);
     },
-    [handleUpdateSearchParams ]
+    [handleUpdateSearchParams]
   );
 
   return (
     <div className="flex items-center justify-between px-2">
       <div className="flex-1 text-sm text-muted-foreground">
         {totalItems > 0 && (
-          <p>
-            Showing {size} of {totalItems} rows
-          </p>
+          <>
+            <p className="hidden sm:block">
+              {size} de {totalItems} filas
+            </p>
+            <p className="sm:hidden">
+              {size} / {totalItems}
+            </p></>
         )}
       </div>
       <div className="flex items-center space-x-6 lg:space-x-8">
         <div className="flex items-center space-x-2">
-          <p className="text-sm font-medium">Filas por  
-          página:
+          <p className="text-sm font-medium">Filas
           </p>
           <Select value={`${size}`} onValueChange={handlePageSizeChange}>
             <SelectTrigger className="h-8 w-[70px]">
@@ -91,9 +94,9 @@ export function DataTablePagination<TData>({
           </Select>
         </div>
         <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          pag {currentPage} de {totalPages}
+          {currentPage} / {totalPages}
         </div>
-        <div className="flex items-center space-x-2">
+        <div style={{ margin: 0 }} className="flex items-center mx-0 gap-2 sm:space-x-2">
           <Button
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
