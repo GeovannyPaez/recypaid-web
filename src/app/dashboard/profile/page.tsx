@@ -3,14 +3,12 @@
  * @see https://v0.dev/t/ipDcZR5s02K
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+
 import ProfileService from "@/services/server/ProfileService";
 import { CreateUserProfileAction, UpdateUserProfileAction } from "@/actions/user-profile.action";
 import ProfileForm from "@/components/dashboard/profile/profile-form";
 
-export  default async function ProfilePage() {
+export default async function ProfilePage() {
   const userProfile = await ProfileService.get();
 
   const action = userProfile ? UpdateUserProfileAction : CreateUserProfileAction;
