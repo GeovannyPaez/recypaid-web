@@ -1,7 +1,15 @@
-import React from 'react'
+import OrdersLocationsMap from "@/components/maps/orders-locations-map";
+import OrdersService from "@/services/server/OrdersService"
+import { OrderPaginationDto } from "@/types/orders"
 
-export default function OrdersMapPage() {
+type OrdersMapPageProps = {
+  searchParams?: OrderPaginationDto
+}
+
+export default async function OrdersMapPage({ searchParams }: OrdersMapPageProps) {
+  const ordersLocations = await OrdersService.findAllPickerOrdersLocations(searchParams);
+
   return (
-    <div>OrdersMapPage</div>
+    <OrdersLocationsMap orders={ordersLocations.data} />
   )
 }

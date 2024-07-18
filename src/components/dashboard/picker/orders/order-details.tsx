@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { CalendarIcon, Check, ClipboardCheck, Map, Phone, UserIcon, X } from "lucide-react"
 import OrdersService from "@/services/server/OrdersService"
 import StatusBadge from "../../orders/order-status-badge"
-import GoToGoggleMaps from '@/components/map/go-to-goggle-maps';
+import GoToGoggleMaps from '@/components/maps/go-to-goggle-maps';
 import ModalDeleteAction from '@/components/ui/modal-delete-action';
 import OrderModalCompleteAction from './order-modal-complete-action';
 import { AcceptOrderAction, RejectOrderAction } from '@/actions/orders-actions';

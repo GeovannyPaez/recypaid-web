@@ -1,4 +1,4 @@
-import { CompleteOrderDto, CreateOrderDto, OrderDetails, OrderList, OrderPaginationDto } from "@/types/orders";
+import { CompleteOrderDto, CreateOrderDto, OrderDetails, OrderList, OrderPaginationDto, OrdersWithLocations } from "@/types/orders";
 import { ApiService } from "./ApiService";
 import api from "@/lib/api";
 import { PaginationResponse } from "@/types/pagination";
@@ -42,6 +42,19 @@ class OrdersService extends ApiService {
                 params: paginationParams,
                 ...headers
             },);
+            return response.data;
+        } catch (error) {
+            throw this.handlerError(error);
+        }
+    }
+
+    async findAllPickerOrdersLocations(paginationParams?: OrderPaginationDto): Promise<PaginationResponse<OrdersWithLocations[]>> {
+        try {
+            const headers = await this.authHeaders();
+            const response = await api.get<PaginationResponse<OrdersWithLocations[]>>(`${this.pathName}/all-locations`, {
+                params: paginationParams,
+                ...headers
+            });
             return response.data;
         } catch (error) {
             throw this.handlerError(error);

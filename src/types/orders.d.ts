@@ -70,5 +70,25 @@ export interface OrderFindManyResponseDto {
 
 export interface OrderPaginationDto extends PaginationSearchParamsPage {
     status?: OrderStatus;
+    initDate?: string;
+    endDate?: string;
     userId: string;
+}
+
+
+interface OrdersWithLocations {
+    id: string;
+    user: string;
+    address: string;
+    location: {
+        id: string;
+        latitude: number;
+        longitude: number;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: string;
+    };
+    createdAt: Date;
+    status: $Enums.OrderStatus;
+    total: number;
 }

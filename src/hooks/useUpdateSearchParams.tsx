@@ -1,6 +1,6 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import {  useCallback } from "react";
+import { useCallback } from "react";
 
 type UpdateSearchParamsProps = {
   searchParamsInPage: string[];
@@ -35,7 +35,7 @@ export default function useUpdateSearchParams({ searchParamsInPage }: UpdateSear
         }
       });
 
-      replace(`${pathName}?${currentParams.toString()}`, { scroll: false});
+      replace(`${pathName}?${currentParams.toString()}`, { scroll: false });
     },
     [pathName, replace, searchParamsHook, searchParamsInPage]
   );
@@ -53,16 +53,20 @@ export default function useUpdateSearchParams({ searchParamsInPage }: UpdateSear
         }
       });
 
-      replace(`${pathName}?${newParams.toString()}`,{scroll:false});
+      replace(`${pathName}?${newParams.toString()}`, { scroll: false });
     },
     [pathName, replace, searchParamsHook]
   );
 
-  const getValueToSearchParam = (key:string) => searchParamsHook.get(key) || null;
-  const deleteSarchParam = (key:string) => {
+  const getValueToSearchParam = (key: string) => searchParamsHook.get(key) || null;
+  const deleteSarchParam = (key: string) => {
     const currentParams = new URLSearchParams(searchParamsHook.toString());
     currentParams.delete(key);
     replace(`${pathName}?${currentParams.toString()}`);
   }
-  return { handleUpdateSearchParams, handleReset, getValueToSearchParam , deleteSarchParam};
+
+  const getCurrentSearchParams = () => {
+    return `${searchParamsHook.toString()}`;
+  }
+  return { handleUpdateSearchParams, handleReset, getValueToSearchParam, deleteSarchParam, getCurrentSearchParams };
 }
