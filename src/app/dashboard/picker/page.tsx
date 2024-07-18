@@ -2,9 +2,7 @@ import Footer from "@/components/shared/footer"
 import UserBasicStatisticsSkeleton from "@/components/shared/skeletons/user-basic-statistics-skeleton"
 import UserBasicStatistics from "@/components/shared/user-basic-statistics"
 import WelcomeBackUser from "@/components/shared/welcome-back-user"
-import { Skeleton } from "@/components/ui/skeleton"
 import { Role } from "@/config/routes"
-import { Link } from "lucide-react"
 import { Suspense } from "react"
 
 export default async function UserHomePage() {
@@ -15,10 +13,9 @@ export default async function UserHomePage() {
                     <WelcomeBackUser />
                     <p className="max-w-[700px] text-muted-foreground md:text-xl mt-4">
                         Aquí tienes un resumen rápido de tus actividades de reciclaje.
-
                     </p>
                     <Suspense fallback={<UserBasicStatisticsSkeleton role={Role.PICKER} />}>
-                        <UserBasicStatistics />
+                        <UserBasicStatistics role={Role.PICKER} />
                     </Suspense>
                 </div>
             </section>
