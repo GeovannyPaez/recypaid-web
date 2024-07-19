@@ -38,12 +38,12 @@ export default async function OrderDetails({ id, role }: OrderDetailsPageProps) 
     };
 
     return (
-        <Card>
+        <Card className="w-full max-w-3xl mx-auto">
             <CardHeader>
                 <CardTitle>Solicitud de reciclaje</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-4">
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <div className="flex items-center gap-2">
                         <UserIcon className="h-5 w-5 text-muted-foreground" />
                         <span>{user.name} {user.lastname}</span>
@@ -59,7 +59,7 @@ export default async function OrderDetails({ id, role }: OrderDetailsPageProps) 
                 </div>
                 <div className="flex items-center gap-2">
                     <Map className="h-5 w-5 text-muted-foreground" />
-                    <span>{user.address}</span>
+                    <span className="break-words">{user.address}</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <Phone className="h-5 w-5 text-muted-foreground" />
@@ -67,14 +67,19 @@ export default async function OrderDetails({ id, role }: OrderDetailsPageProps) 
                 </div>
 
                 <Separator />
-                <div className="grid gap-2">
+                <div className="grid gap-4">
+                    <div className="grid grid-cols-5 gap-2 items-center font-medium text-sm">
+                        <span className="col-span-2 text-xs">Material</span>
+                        <span className="text-right text-xs">Precio</span>
+                        <span className="text-right text-xs">Cantidad</span>
+                        <span className="text-right text-xs">Subtotal</span>
+                    </div>
                     {items.map((item) => (
-                        <div key={item.id} className="flex items-center justify-between">
-                            <span>{item.recyclableMaterial.name}</span>
-                            <div className="flex items-center gap-1">
-                                <span>{item.quantity} {item.recyclableMaterial.priceBy}</span>
-                                <span>${(item.quantity * item.recyclableMaterial.price).toFixed(2)}</span>
-                            </div>
+                        <div key={item.id} className="grid grid-cols-5 gap-2 items-center text-sm">
+                            <span className="col-span-2 font-medium text-xs">{item.recyclableMaterial.name}</span>
+                            <span className="text-right text-xs">${item.recyclableMaterial.price.toFixed(2)}/{item.recyclableMaterial.priceBy}</span>
+                            <span className="text-right text-xs">{item.quantity}</span>
+                            <span className="text-right font-medium text-xs">${(item.quantity * item.recyclableMaterial.price).toFixed(2)}</span>
                         </div>
                     ))}
                 </div>
@@ -85,7 +90,7 @@ export default async function OrderDetails({ id, role }: OrderDetailsPageProps) 
                 </div>
             </CardContent>
             {role === Role.PICKER && (
-                <CardFooter className="flex justify-between flex-wrap gap-2">
+                <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-4">
                     <GoToGoggleMaps latitude={latitude} longitude={longitude} />
                     <div className="flex gap-2">
                         {(status == "PENDING" || status == "ACCEPTED") && (
@@ -98,7 +103,7 @@ export default async function OrderDetails({ id, role }: OrderDetailsPageProps) 
                                 }}
                             >
                                 <Button variant="outline" size="sm">
-                                    <X className="h-4 w-4" />
+                                    <X className="h-4 w-4 mr-2" />
                                     Rechazar
                                 </Button>
                             </ModalDeleteAction>
@@ -113,7 +118,7 @@ export default async function OrderDetails({ id, role }: OrderDetailsPageProps) 
                                     buttonProps={{
                                         size: "sm"
                                     }}>
-                                    <Check className="h-4 w-4" />
+                                    <Check className="h-4 w-4 mr-2" />
                                     Aceptar
                                 </ButtonHandleServerAction>
                             )
