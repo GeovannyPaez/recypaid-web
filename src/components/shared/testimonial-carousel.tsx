@@ -41,8 +41,10 @@ export default function TestimonialCarousel() {
               nuestra comunidad de reciclaje.
             </p>
           </div>
-          <Carousel className="w-full max-w-4xl">
-            <CarouselContent>
+          <Carousel opts={{
+            loop: true,
+          }} className=" w-3/4 max-w-4xl">
+            <CarouselContent >
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index}>
                   <Card className=" bg-white border-primary">
@@ -54,10 +56,10 @@ export default function TestimonialCarousel() {
                     <CardFooter className="flex items-center justify-center gap-4">
                       <Avatar>
                         <AvatarImage src="/placeholder.svg" alt="User Avatar" />
-                        <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
+                        <AvatarFallback className='text-primary dark:text-white'>{testimonial.name[0]}</AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-medium text-primary-foreground">
+                        <p className="font-medium text-primary">
                           {testimonial.name}
                         </p>
                         <p className="text-muted-foreground text-sm">

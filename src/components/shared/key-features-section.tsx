@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { RecycleIcon, Wallet, Truck } from "lucide-react"
+import AnimatedSection from './animated-section'
 
 const features = [
     {
@@ -35,19 +36,21 @@ export default function KeyFeaturesSection() {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
                         {features.map((feature, index) => (
-                            <Card key={index} className="bg-white border-green-200 shadow-md hover:shadow-lg transition-shadow">
-                                <CardHeader>
-                                    <feature.icon className="h-12 w-12 text-green-600 mx-auto" />
-                                    <CardTitle className="text-xl font-semibold text-center text-primary-foreground">
-                                        {feature.title}
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-muted-foreground text-center">
-                                        {feature.description}
-                                    </p>
-                                </CardContent>
-                            </Card>
+                            <AnimatedSection key={index}>
+                                <Card className="bg-white border-green-200  shadow-inner hover:shadow-lg transition-shadow ">
+                                    <CardHeader>
+                                        <feature.icon className="h-12 w-12 text-primary mx-auto" />
+                                        <CardTitle className="text-xl font-semibold text-center text-[#052e16]">
+                                            {feature.title}
+                                        </CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p className="text-muted-foreground text-center">
+                                            {feature.description}
+                                        </p>
+                                    </CardContent>
+                                </Card>
+                            </AnimatedSection>
                         ))}
                     </div>
                 </div>

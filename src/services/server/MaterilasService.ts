@@ -18,9 +18,10 @@ class MaterialsService extends ApiService {
 
     async getAllMaterials(): Promise<Material[]> {
         try {
-            const response = await api.get<Material[]>(this.pathName, await this.authHeaders());
+            const response = await api.get<Material[]>(this.pathName);
             return response.data;
         } catch (error) {
+            console.error(error);
             return []
         }
     }

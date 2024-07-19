@@ -2,6 +2,7 @@ import React from 'react'
 import { ArrowRightIcon } from 'lucide-react'
 import { Card, CardContent, CardHeader } from '../ui/card'
 import Link from 'next/link'
+import AnimatedSection from './animated-section'
 
 const newsItems = [
     {
@@ -78,7 +79,9 @@ export default function LatestNewsSection() {
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {newsItems.map((item) => (
-                            <NewsCard key={item.id} {...item} />
+                            <AnimatedSection key={item.id}>
+                                <NewsCard key={item.id} {...item} />
+                            </AnimatedSection>
                         ))}
                     </div>
                 </div>

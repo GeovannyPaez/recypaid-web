@@ -8,9 +8,9 @@ import { JSX } from "react";
 
 export default async function MaterialesReciclables() {
   const materials = await MaterilasService.getAllMaterials();
-  
+
   return (
-    <section className="w-full  ">
+    <section className="w-full">
       <div className="container mx-auto max-w-5xl px-4 md:px-6">
         <div className="space-y-6">
           <div className="space-y-2 text-center">
@@ -45,8 +45,8 @@ type MaterialCardProps = {
   title: string;
   description: string;
   price: number;
-  priceBy:PriceByMaterial ;
-  id:string
+  priceBy: PriceByMaterial;
+  id: string
 };
 function MaterialCard({
   icon,
@@ -54,7 +54,7 @@ function MaterialCard({
   description,
   price,
   priceBy,
-    id
+  id
 }: MaterialCardProps) {
   return (
     <div className="rounded-lg border border-primary p-6 shadow-sm  hover:bg-transparent">
