@@ -7,6 +7,7 @@ import useFieldsState from "@/hooks/useFieldsState";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ResponseErrorType } from "@/errors/ResponseError";
 
 type InitialStateType = {
   email: string;
@@ -35,6 +36,10 @@ export default function FormularioInicioSesion() {
       });
 
       if (signInResponse?.error) {
+        if (signInResponse.error === ResponseErrorType.EMAIL_NOT_VERIFIED) {
+          router.push(`/auth/email-validation?email=${fields.email}`);
+          return;
+        }
         return setFormState({ isLoading: false, error: signInResponse.error });
       }
 
@@ -65,7 +70,7 @@ export default function FormularioInicioSesion() {
         <div className="flex items-center">
           <Label htmlFor="password">Contraseña</Label>
           <Link
-            href="/forgot-password"
+            href="/auth/forgot-password"
             className="ml-auto inline-block text-sm underline"
           >
             ¿Olvidaste tu contraseña?

@@ -8,3 +8,10 @@ export type User = {
     token: string;
     role: Role;
 }
+
+
+export type ResetPasswordDto = {
+    email: string;
+    password: string;
+    code: string;
+}
