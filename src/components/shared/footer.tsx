@@ -10,7 +10,6 @@ export default function Footer() {
                     <Link href="#" className="text-muted-foreground hover:text-foreground" prefetch={false}>
                         Sobre nosotros
                     </Link>
-
                 </div>
                 <div className="grid gap-1">
                     <h3 className="font-semibold text-foreground">Servicios</h3>
@@ -25,15 +24,15 @@ export default function Footer() {
 
                 <div className="grid gap-1">
                     <h3 className="font-semibold text-foreground">Legal</h3>
-                    <Link href="#" className="text-muted-foreground hover:text-foreground" prefetch={false}>
+                    <Link href="/legal/privacy_policy" className="text-muted-foreground hover:text-foreground" prefetch={false}>
                         Política de privacidad
                     </Link>
-                    <Link href="#" className="text-muted-foreground hover:text-foreground" prefetch={false}>
+                    <Link href="/legal/terms_conditions" className="text-muted-foreground hover:text-foreground" prefetch={false}>
                         Términos de servicio
                     </Link>
-                    <Link href="#" className="text-muted-foreground hover:text-foreground" prefetch={false}>
+                    {/* <Link href="#" className="text-muted-foreground hover:text-foreground" prefetch={false}>
                         Política de cookies
-                    </Link>
+                    </Link> */}
                 </div>
                 <div className="grid gap-1">
                     <h3 className="font-semibold text-foreground">Contacto</h3>

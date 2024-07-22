@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useFieldsState from "@/hooks/useFieldsState";
-import { signIn } from "next-auth/react";
+import { signIn, } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ResponseErrorType } from "@/errors/ResponseError";
@@ -16,6 +16,7 @@ type InitialStateType = {
 
 export default function FormularioInicioSesion() {
   const router = useRouter();
+
   const { fields, handleChange } = useFieldsState<InitialStateType>({
     email: "",
     password: "",

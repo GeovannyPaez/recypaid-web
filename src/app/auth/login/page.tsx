@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import LoginForm from "../../../components/auth/login/login-form";
+import ButtonGoogleAuth from "@/components/auth/button-google-auth";
+import { Separator } from "@/components/ui/separator";
 
 export default function LoginPage() {
   return (
@@ -15,11 +17,14 @@ export default function LoginPage() {
             </p>
           </div>
           <LoginForm />
-          <div className="mt-4 text-center text-sm">
+          <div className="text-center text-sm">
             ¿No tienes una cuenta?{" "}
             <Link href="/auth/register" className="underline">
               Regístrate
             </Link>
+            <p className="my-1">ó</p>
+            <Separator />
+            <ButtonGoogleAuth />
           </div>
         </div>
       </div>

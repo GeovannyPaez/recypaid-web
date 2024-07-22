@@ -7,6 +7,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import FormularioRegistro from "@/components/auth/register/register-form";
+import { Separator } from "@/components/ui/separator";
+import ButtonGoogleAuth from "@/components/auth/button-google-auth";
 
 export default function PaginaRegistro() {
   return (
@@ -25,6 +27,9 @@ export default function PaginaRegistro() {
             <Link href="/auth/login" className="underline">
               Inicia sesión
             </Link>
+            <p className="my-1">ó</p>
+            <Separator />
+            <ButtonGoogleAuth />
           </div>
         </CardContent>
       </Card>

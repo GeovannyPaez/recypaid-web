@@ -11,4 +11,11 @@ declare module "next-auth" {
             role: Role;
         }
     }
+    interface User {
+        id: string;
+        email: string;
+        isEmailVerified: boolean;
+        token: string;
+        role: Role;
+    }
 }

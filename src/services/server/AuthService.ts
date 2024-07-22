@@ -47,6 +47,15 @@ export const RegisterService = async (
   }
 };
 
+export const ValidateOauthGoogleToken = async (token: string) => {
+  try {
+    const res = await api.post<User>("/auth/callback/google", { token });
+    return res.data
+  } catch (error) {
+    throw new ResponseError("Google token no valid", ResponseErrorType.UNAUTHORIZED)
+  }
+}
+
 export const GetServerSession = async (): Promise<User> => {
   const session = await getServerSession(nextAuthOptions);
   if (!session) {
