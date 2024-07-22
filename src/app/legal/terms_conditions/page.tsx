@@ -84,9 +84,9 @@ export default function Component() {
             <section className="mb-6">
                 <h2 className="text-lg font-semibold mb-2">Ley aplicable y resolución de disputas</h2>
                 <p>
-                    Estos términos y condiciones se regirán e interpretarán de acuerdo con las leyes de [País/Estado/Provincia].
+                    Estos términos y condiciones se regirán e interpretarán de acuerdo con las leyes de Colombia.
                     Cualquier disputa que surja en relación con este programa de reciclaje será resuelta a través de los
-                    tribunales competentes de [Ciudad/Región].
+                    tribunales competentes de Cucuta, Norte de Santander.
                 </p>
             </section>
         </div>
