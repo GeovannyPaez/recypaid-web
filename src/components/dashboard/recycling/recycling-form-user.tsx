@@ -10,6 +10,7 @@ import { CreateOrderAction } from "@/actions/orders-actions";
 import useToastActionResponse from "@/hooks/useToastActionResponse";
 import { useRouter } from "next/navigation";
 import { useUserLocation } from "@/hooks/useUserLocation";
+import Link from "next/link";
 
 type RecyclingFormUserProps = {
   materials: Material[];
@@ -100,8 +101,11 @@ export default function RecyclingFormUser({ materials, address, materialIdSelect
   return (
     <form className="space-y-6" onSubmit={handleSubmit}>
       <div>
-        <h3 className="text-lg font-semibold">
+        <h3 className="text-lg font-semibold my-1">
           Seleccione los materiales a reciclar y especifique la cantidad.
+          <Link href="/dashboard/recyclable-materials">
+            <p className=" inline-flex mx-1 underline"> Ver precios</p>
+          </Link>
         </h3>
         <SelectMaterialsForm
           onChageQuantityMaterial={onChageQuantityMaterial}

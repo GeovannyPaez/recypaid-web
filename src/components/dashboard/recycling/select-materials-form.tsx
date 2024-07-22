@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import MaterialCardForm from "./material-card-form";
-import { X } from "lucide-react";
+import { MoreVerticalIcon, PlusCircle, X } from "lucide-react";
 
 import { Material } from "@/types/materilas";
 type SelectMaterialFormProps = {
@@ -21,7 +21,7 @@ type SelectMaterialFormProps = {
   selectedMaterials: Material[];
 }
 
-export default function SelectMaterialForm( { materials, selectedMaterials,onSelectMaterial,handleDeleteMaterial,onChageQuantityMaterial }: SelectMaterialFormProps) {
+export default function SelectMaterialForm({ materials, selectedMaterials, onSelectMaterial, handleDeleteMaterial, onChageQuantityMaterial }: SelectMaterialFormProps) {
 
   const ValuesMaterials = materials.map((material) => ({
     value: material.name,
@@ -47,9 +47,12 @@ export default function SelectMaterialForm( { materials, selectedMaterials,onSel
           </Badge>
         ))}
       </div>
-      <Select onValueChange={onSelectMaterial}>
-        <SelectTrigger className="w-full">
-          <SelectValue placeholder="Seleciona los materiales" />
+      <Select onValueChange={onSelectMaterial} >
+        <SelectTrigger className="w-full" icon={<PlusCircle className="w-5 h-5" />}>
+          <p>
+            Click Para Añadir Más Materiales
+          </p>
+
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
