@@ -2,18 +2,11 @@
 import { signIn } from 'next-auth/react';
 import React from 'react'
 import { Button } from '../ui/button';
-import { useRouter } from 'next/navigation';
 
 export default function ButtonGoogleAuth() {
-    const router = useRouter();
 
-    const handleOauth = async (event: any) => {
-        const result = await signIn("google", { redirect: false });
-        if (result?.error) {
-            console.error('Error durante la autenticación:', result.error);
-        } else {
-            router.push('/dashboard');
-        }
+    const handleOauth = async () => {
+        await signIn("google", { callbackUrl: '/dashboard' });
     };
 
     return (

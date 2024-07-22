@@ -51,7 +51,7 @@ const nextAuthOptions: NextAuthOptions = {
             session.user = token as any;
             return session;
         },
-        async signIn({ user, account, profile }) {
+        async signIn({ user, account }) {
             if (account?.provider === "google") {
                 try {
                     const userDb = await ValidateOauthGoogleToken(account?.id_token as string)
@@ -70,11 +70,14 @@ const nextAuthOptions: NextAuthOptions = {
             }
             return false;
         },
+        // redirect: async ({ url, baseUrl }) => {
+        //     return url.startsWith(baseUrl) ? url : baseUrl + "/dashboard";
+        // }
     },
     pages: {
         signIn: "/auth/login",
         signOut: "/auth/logout",
-    }
+    },
 };
 
 export default nextAuthOptions;
