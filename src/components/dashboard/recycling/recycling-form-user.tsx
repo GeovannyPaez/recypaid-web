@@ -29,6 +29,7 @@ export default function RecyclingFormUser({ materials, address, materialIdSelect
   const [isLoading, handleTransition] = useTransition();
   const [selectedMaterials, setSelectedMaterials] = useState<SelectMaterialItem[]>(initialSelectedMaterial ? [initialSelectedMaterial] : []);
   const { location, error, getLocation } = useUserLocation();
+  const [addresState, setAddressState] = useState<string | undefined>(address);
 
   const onSelectMaterial = (value: string) => {
     const index = materials.findIndex((materia) => materia.name == value);
@@ -71,6 +72,10 @@ export default function RecyclingFormUser({ materials, address, materialIdSelect
       toastActionResponse({ error: true, message: "Por favor, obtén tu ubicación antes de enviar el formulario" });
       return;
     }
+    if (addresState === undefined || addresState.trim() === "") {
+      toastActionResponse({ error: true, message: "Por favor, ingrese la dirección de recogida" });
+      return;
+    }
     if (selectedMaterials.length === 0) {
       toastActionResponse({ error: true, message: "Seleccione al menos un material" });
       return;
@@ -88,7 +93,7 @@ export default function RecyclingFormUser({ materials, address, materialIdSelect
     const data: CreateOrderDto = {
       materials,
       location: location,
-      address: address
+      address: addresState,
     }
 
     handleTransition(async () => {
@@ -117,7 +122,9 @@ export default function RecyclingFormUser({ materials, address, materialIdSelect
       </div>
       <div className="grid gap-2">
         <Label>Dirección de recogida</Label>
-        <Input defaultValue={address} name="address" placeholder="Dirección de recogida" />
+        <Input defaultValue={addresState}
+          onChange={(e) => setAddressState(e.target.value)}
+          name="address" required placeholder="Dirección de recogida" />
       </div>
       <div className="flex justify-between items-center">
         <Button type="button" onClick={handleGetLocation} disabled={location !== null}>
