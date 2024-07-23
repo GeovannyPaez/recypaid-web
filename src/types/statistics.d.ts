@@ -12,4 +12,5 @@ export interface PickerStatistics {
     isBusy: boolean;
     collectedMaterials: number;
     totalEarnings: number;
+    totalSpentMoney: number;
 }

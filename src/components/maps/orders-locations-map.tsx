@@ -22,7 +22,7 @@ export default function OrdersLocationsMap({ orders }: OrdersLocationsMap) {
                 initialViewState={initialViewState}
                 style={{
                     width: "100%",
-                    height: "calc(100vh - 130px)",
+                    height: "calc(100vh - 160px)",
                     overflow: "hidden",
                     borderRadius: "50px",
                 }}

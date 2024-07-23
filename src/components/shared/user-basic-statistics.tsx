@@ -31,7 +31,7 @@ export default async function UserBasicStatistics({ role = Role.USER }: UserBasi
         )
     }
     const pickerStatistics: PickerStatistics = await StatisticsService.getPickerStatistics();
-    const { totalEarnings, collectedMaterials, assignedOrders, isBusy, completedOrders } = pickerStatistics;
+    const { collectedMaterials, assignedOrders, isBusy, completedOrders, totalSpentMoney } = pickerStatistics;
     let currentOrder = null;
     if (isBusy) {
         currentOrder = await OrdersService.getCurrentPickerOrder();
@@ -43,7 +43,7 @@ export default async function UserBasicStatistics({ role = Role.USER }: UserBasi
             {isBusy && currentOrder && (
                 <InfoCardHome title="Solicitud Actual" value={`$${currentOrder.total}`} Icon={CarIcon} link={`/dashboard/picker/orders/${currentOrder.id}`} />
             )}
-            <InfoCardHome title="Ganancias Totales" value={`$${totalEarnings}`} Icon={DollarSignIcon} />
+            <InfoCardHome title="Dinero Gastado" value={`$${totalSpentMoney}`} Icon={DollarSignIcon} />
             <InfoCardHome title="Materiales Recogidos" value={`${collectedMaterials}`} Icon={RecycleIcon} />
             <InfoCardHome title="Solicitudes Asignadas" value={`${assignedOrders}`} Icon={ClipboardListIcon} />
             <InfoCardHome title="Solicitudes Completadas" value={`${completedOrders}`} Icon={CheckCircleIcon} />
