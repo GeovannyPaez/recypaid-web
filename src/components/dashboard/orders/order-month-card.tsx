@@ -3,7 +3,7 @@ import OrderCard from "./order-card";
 
 const MonthCard: React.FC<{ month: string; orders: OrderFindManyResponseDto[] }> = ({ month, orders }) => {
   return (
-    <div className="bg-white p-2 dark:bg-gray-950 rounded-lg shadow-md">
+    <div className="bg-white w-full p-2 dark:bg-gray-950 rounded-lg shadow-md">
       <div className="">
         <h2 className="text-xl font-bold mb-4">{month}</h2>
         <div className="flex flex-col gap-4">
