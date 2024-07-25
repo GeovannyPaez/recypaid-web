@@ -11,19 +11,19 @@ import {
 
 const testimonials = [
   {
-    quote: "RecyPaid ha sido una gran ayuda para mí y mi familia. Ahora reciclamos mucho más y nos sentimos orgullosos de contribuir a un mundo más sostenible. ¡Y encima nos pagan por ello!",
+    quote: "RecyPaid ha sido una increíble ayuda para mi familia. Ahora reciclamos mucho más y estamos orgullosos de contribuir a un mundo más sostenible. ¡Además, nos pagan por hacerlo!",
     name: "María Gómez",
-    since: "Usuario desde 2020"
+    since: "Usuario desde abril de 2024"
   },
   {
-    quote: "RecyPaid ha sido un gran aliado en mi camino hacia una vida más sostenible. Ahora reciclo casi todo y me siento mucho más comprometido con el medio ambiente. ¡Y lo mejor es que me pagan por ello!",
+    quote: "RecyPaid ha sido un excelente aliado en mi camino hacia una vida más sostenible. Ahora reciclo casi todo y me siento mucho más comprometido con el medio ambiente. ¡Y lo mejor es que me pagan por ello!",
     name: "Juan Pérez",
-    since: "Usuario desde 2021"
+    since: "Usuario desde marzo de 2024"
   },
   {
-    quote: "RecyPaid ha sido una gran ayuda para mí y mi familia. Ahora reciclamos mucho más y nos sentimos orgullosos de contribuir a un mundo más sostenible. ¡Y lo mejor es que nos pagan por ello!",
+    quote: "RecyPaid ha sido fundamental para mí y mi familia. Hemos aumentado nuestra cantidad de reciclaje y nos sentimos bien al saber que estamos haciendo algo positivo por el planeta. ¡Y encima nos pagan por ello!",
     name: "Ana Martínez",
-    since: "Usuario desde 2019"
+    since: "Usuario desde junio de 2024"
   }
 ]
 
