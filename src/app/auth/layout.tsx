@@ -15,7 +15,7 @@ export default function LayaoutAuth({ children }: LayaoutAuthProps) {
                 <Link
                     href={"/"}
                 >
-                    <Logo /></Link>
+                    <Logo width={45} height={45} /></Link>
                 <h1>
                     RecyPaid
                 </h1>
