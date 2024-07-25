@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "RecyPaid",
     images: [
       {
-        url: "https://recypaid.com/og-image.jpg",
+        url: "https://recypaid.com/icon.png",
         width: 1200,
         height: 630,
         alt: "RecyPaid - Reciclaje a Domicilio",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "RecyPaid - Reciclaje a Domicilio en Colombia",
     description: "Recicla desde casa y gana dinero con RecyPaid. ¡Únete ahora!",
-    images: ["https://recypaid.com/twitter-image.jpg"],
+    // images: ["https://recypaid.com/twitter-image.jpg"],
   },
   robots: "index, follow",
   // themeColor: [
