@@ -16,9 +16,9 @@ export const CreateOrderAction = async (data: CreateOrderDto): Promise<ActionRes
     }
 }
 
-export const RejectOrderAction = async (orderId: string): Promise<ActionResponse> => {
+export const RejectOrderAction = async (orderId: string, reason: string): Promise<ActionResponse> => {
     try {
-        await OrdersService.rejectOrder(orderId)
+        await OrdersService.rejectOrder(orderId, reason)
     } catch (error) {
         const err = error as Error
         return errorAction(err.message)

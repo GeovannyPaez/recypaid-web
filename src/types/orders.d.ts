@@ -50,6 +50,7 @@ export interface OrderDetails {
     createdAt: Date;
     updatedAt: Date;
     items: OrderItem[];
+    rejectionReason: string | null;
     userLocation: LocationDto
     user: UserProfile;
     picker: any | null;

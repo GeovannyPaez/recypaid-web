@@ -57,6 +57,14 @@ export default async function OrderDetails({ id, role }: OrderDetailsPageProps) 
                     <ClipboardCheck className="h-5 w-5 text-muted-foreground" />
                     <StatusBadge status={status} />
                 </div>
+                {orderDetails.rejectionReason && (
+                    <div className='flex items-center gap-2'>
+                        <X className="h-5 w-5 text-muted-foreground" />
+                        <span className=' font-semibold'>Motivo de rechazo:</span>
+                        <span> {orderDetails.rejectionReason}</span>
+                    </div>
+                )}
+                <Separator />
                 <div className="flex items-center gap-2">
                     <Map className="h-5 w-5 text-muted-foreground" />
                     <span className="break-words">{user.address}</span>
@@ -89,48 +97,56 @@ export default async function OrderDetails({ id, role }: OrderDetailsPageProps) 
                     <span>${total.toFixed(2)}</span>
                 </div>
             </CardContent>
-            {role === Role.PICKER && (
-                <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <GoToGoggleMaps latitude={latitude} longitude={longitude} />
-                    <div className="flex gap-2">
-                        {(status == "PENDING" || status == "ACCEPTED") && (
-                            <ModalDeleteAction
-                                title="Rechazar solicitud"
-                                alertMessage="¿Estás seguro de rechazar esta solicitud?"
-                                serverAction={async () => {
-                                    "use server";
-                                    return RejectOrderAction(id)
-                                }}
-                            >
-                                <Button variant="outline" size="sm">
-                                    <X className="h-4 w-4 mr-2" />
-                                    Rechazar
-                                </Button>
-                            </ModalDeleteAction>
-                        )}
-                        {
-                            status === "PENDING" && (
-                                <ButtonHandleServerAction
-                                    serverAction={async () => {
-                                        "use server"
-                                        return AcceptOrderAction(id)
-                                    }}
-                                    buttonProps={{
-                                        size: "sm"
-                                    }}>
-                                    <Check className="h-4 w-4 mr-2" />
-                                    Aceptar
-                                </ButtonHandleServerAction>
-                            )
-                        }
-                        {
-                            status === "ACCEPTED" && (
-                                <OrderModalCompleteAction allMaterials={allMaterials} orderItems={orderDetails.items} />
-                            )
-                        }
-                    </div>
-                </CardFooter>
-            )}
+
+
+            <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                {(status == "PENDING" || status == "ACCEPTED") && (
+                    <ModalDeleteAction
+                        title="Rechazar solicitud"
+                        alertMessage="¿Estás seguro de rechazar esta solicitud?"
+                        showInput={true}
+                        serverAction={async (value) => {
+                            "use server";
+                            return RejectOrderAction(id, value || "")
+
+                        }}
+                    >
+                        <Button variant="outline" size="sm">
+                            <X className="h-4 w-4 mr-2" />
+                            Rechazar
+                        </Button>
+                    </ModalDeleteAction>
+                )}
+                {role === Role.PICKER && (
+                    <>
+                        <GoToGoggleMaps latitude={latitude} longitude={longitude} />
+                        <div className="flex gap-2">
+                            {
+                                status === "PENDING" && (
+                                    <ButtonHandleServerAction
+                                        serverAction={async () => {
+                                            "use server"
+                                            return AcceptOrderAction(id)
+                                        }}
+                                        buttonProps={{
+                                            size: "sm"
+                                        }}>
+                                        <Check className="h-4 w-4 mr-2" />
+                                        Aceptar
+                                    </ButtonHandleServerAction>
+                                )
+                            }
+                            {
+                                status === "ACCEPTED" && (
+                                    <OrderModalCompleteAction allMaterials={allMaterials} orderItems={orderDetails.items} />
+                                )
+                            }
+                        </div></>
+                )}
+            </CardFooter>
+
+
+
         </Card>
     )
 }

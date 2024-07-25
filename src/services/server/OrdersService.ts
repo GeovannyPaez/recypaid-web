@@ -87,10 +87,13 @@ class OrdersService extends ApiService {
             throw this.handlerError(error);
         }
     }
-    async rejectOrder(orderId: string) {
+    async rejectOrder(orderId: string, reason: string) {
         try {
             const headers = await this.authHeaders();
-            const response = await api.get(`${this.pathName}/${orderId}/reject`, headers);
+            const response = await api.get(`${this.pathName}/${orderId}/reject`, {
+                params: { reason },
+                ...headers
+            });
             return response.data;
         } catch (error) {
             throw this.handlerError(error);
