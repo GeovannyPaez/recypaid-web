@@ -1,8 +1,30 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import LoginForm from "../../../components/auth/login/login-form";
 import ButtonGoogleAuth from "@/components/auth/button-google-auth";
 import { Separator } from "@/components/ui/separator";
+
+export const metadata: Metadata = {
+  title: "Iniciar Sesión | RecyPaid - Reciclaje a Domicilio",
+  description: "Accede a tu cuenta de RecyPaid para gestionar tus servicios de reciclaje a domicilio y ver tus recompensas.",
+  keywords: "login, iniciar sesión, RecyPaid, reciclaje, domicilio, Colombia",
+  openGraph: {
+    title: "Iniciar Sesión en RecyPaid",
+    description: "Accede a tu cuenta de RecyPaid y comienza a reciclar desde casa.",
+    url: "https://www.recypaid.com/auth/login",
+    siteName: "RecyPaid",
+    locale: "es_CO",
+    type: "website",
+  },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   title: "Iniciar Sesión en RecyPaid - Reciclaje a Domicilio",
+  //   description: "Accede a tu cuenta de RecyPaid y gestiona tus servicios de reciclaje.",
+  //   images: ["https://www.recypaid.com/login-twitter-image.jpg"],
+  // },
+  robots: "noindex, nofollow", // Typically, login pages are not indexed
+};
 
 export default function LoginPage() {
   return (
@@ -31,9 +53,9 @@ export default function LoginPage() {
       <div className="hidden bg-muted lg:block">
         <Image
           src="/phone-recycling.jpeg"
-          alt="Imagen"
-          width="1920"
-          height="1080"
+          alt="Persona reciclando con su teléfono móvil"
+          width={1920}
+          height={1080}
           className="h-full w-full object-cover"
         />
       </div>

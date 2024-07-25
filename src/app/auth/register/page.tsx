@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   Card,
@@ -10,9 +11,38 @@ import FormularioRegistro from "@/components/auth/register/register-form";
 import { Separator } from "@/components/ui/separator";
 import ButtonGoogleAuth from "@/components/auth/button-google-auth";
 
+export const metadata: Metadata = {
+  title: "Regístrate en RecyPaid | Únete al Reciclaje a Domicilio",
+  description: "Crea tu cuenta en RecyPaid y comienza a reciclar desde casa. Únete a la comunidad de reciclaje más grande de Colombia y gana recompensas por tus esfuerzos.",
+  keywords: "registro, crear cuenta, RecyPaid, reciclaje, domicilio, Colombia, recompensas",
+  openGraph: {
+    title: "Únete a RecyPaid - Reciclaje a Domicilio en Colombia",
+    description: "Regístrate en RecyPaid y comienza tu viaje de reciclaje. Gana dinero mientras ayudas al planeta.",
+    url: "https://www.recypaid.com/auth/register",
+    siteName: "RecyPaid",
+    images: [
+      // {
+      //   url: "https://www.recypaid.com/register-og-image.jpg",
+      //   width: 1200,
+      //   height: 630,
+      //   alt: "Registro en RecyPaid",
+      // },
+    ],
+    locale: "es_CO",
+    type: "website",
+  },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   title: "Regístrate en RecyPaid - Reciclaje a Domicilio",
+  //   description: "Crea tu cuenta en RecyPaid y únete a la revolución del reciclaje en Colombia.",
+  //   images: ["https://www.recypaid.com/register-twitter-image.jpg"],
+  // },
+  robots: "noindex, nofollow", // Typically, registration pages are not indexed
+};
+
 export default function PaginaRegistro() {
   return (
-    <div className=" my-6 flex justify-center items-center">
+    <div className="my-6 flex justify-center items-center">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
           <CardTitle className="text-xl">Registrarse</CardTitle>
