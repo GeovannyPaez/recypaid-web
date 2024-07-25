@@ -4,7 +4,7 @@ import ForgotPasswordForm from '@/components/auth/forgot-password/forgot-passwor
 
 export default function ForgotPasswordPage() {
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div className="flex justify-center items-center my-6 mx-4">
             <Card className="w-full max-w-md">
                 <CardHeader>
                     <CardTitle className="text-2xl font-bold text-center">Recuperar Contraseña</CardTitle>

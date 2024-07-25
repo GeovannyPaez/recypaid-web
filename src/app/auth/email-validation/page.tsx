@@ -11,8 +11,8 @@ export default function EmailValidationPage({
     searchParams,
 }: EmailValidationPageProps) {
     return (
-        <div className="flex h-screen items-center">
-            <section className="mx-auto max-w-md space-y-6 p-3 bg-card">
+        <div className=" mx-4 flex my-8  items-center">
+            <section className="mx-auto max-w-md space-y-6 p-3 bg-card rounded-sm">
                 <div className="space-y-2 text-center">
                     <h1 className="text-3xl font-bold">Verificar Email</h1>
                     <p className="text-gray-500 dark:text-gray-400">

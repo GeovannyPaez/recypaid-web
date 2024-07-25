@@ -12,7 +12,7 @@ import ButtonGoogleAuth from "@/components/auth/button-google-auth";
 
 export default function PaginaRegistro() {
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className=" my-6 flex justify-center items-center">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
           <CardTitle className="text-xl">Registrarse</CardTitle>

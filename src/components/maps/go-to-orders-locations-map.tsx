@@ -3,6 +3,7 @@ import useUpdateSearchParams from '@/hooks/useUpdateSearchParams'
 import { MapIcon } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
+import { Button } from '../ui/button'
 
 type GoToOrdersLocationsMapProps = {
     goWithCurrentSearchParam?: boolean
@@ -14,8 +15,10 @@ export default function GoToOrdersLocationsMap({ goWithCurrentSearchParam = true
     })
     const href = `${pahtName}?${goWithCurrentSearchParam && getCurrentSearchParams()}`
     return (
-        <Link href={href}>
-            <MapIcon className="h-6 w-6" />
-        </Link>
+        <Button size={"icon"}>
+            <Link href={href}>
+                <MapIcon className="h-6 w-6 text-white" />
+            </Link>
+        </Button>
     )
 }
