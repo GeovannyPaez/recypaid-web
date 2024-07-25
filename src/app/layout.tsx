@@ -52,6 +52,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        <meta name="google-site-verification" content="7n1TjfddZ-uNV6dQ1RgoI1q7z90iyxS-7bYKWRF9U9s" />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
