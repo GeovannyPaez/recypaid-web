@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Locate, Mail, Menu, Phone } from "lucide-react";
 import Logo from "@/components/logo";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import ThemeToggleButton from "../theme/theme-toggle-button";
 
 const routes = [
     {
@@ -66,7 +65,7 @@ export default function LayoutPublic({ children }: LayoutProps) {
                         <nav className="grid gap-6 text-lg font-medium">
                             <SheetTrigger asChild>
                                 <Link
-                                    href="/dashboard"
+                                    href="/"
                                     className="flex items-center gap-2 text-lg font-semibold"
                                 >
                                     <Logo />
