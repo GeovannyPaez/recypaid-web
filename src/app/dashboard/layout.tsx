@@ -1,8 +1,18 @@
+import { Metadata } from "next";
 import Header from "../../components/dashboard/header";
 
 type Props = Readonly<{
   children: React.ReactNode;
 }>;
+export const metadata: Metadata = {
+  title: {
+    default: "Dashboard | RecyPaid",
+    template: "%s | RecyPaid Dashboard"
+  },
+  description: "Gestiona tus actividades de reciclaje, ve tus recompensas y contribuye al medio ambiente con RecyPaid.",
+  keywords: "dashboard, reciclaje, recompensas, medio ambiente, RecyPaid, Colombia",
+  robots: "noindex, nofollow", // Typically, dashboard pages are not indexed for privacy reasons
+}
 export default function DashboardLayout({ children }: Props) {
   return (
     <div className="flex min-h-screen w-full flex-col">
