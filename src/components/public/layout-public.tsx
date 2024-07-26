@@ -125,7 +125,7 @@ export default function LayoutPublic({ children }: LayoutProps) {
                                     href="#"
                                 >
                                     <Phone className="h-5 w-5" />
-                                    +57 (317) 553-6413
+                                    +57 (317) 553-6413, +57 (313) 8448436
                                 </Link>
                             </li>
                             <li>
