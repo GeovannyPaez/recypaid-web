@@ -1,4 +1,26 @@
+# My Next.js Project
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Environment Setup
+
+Before running the project, you need to set up your environment variables. Create a file named `.env` in the root directory of your project and add the following variables:
+
+```
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXT_PUBLIC_MAPBOX_TOKEN=your_mapbox_token
+API_URL=http://localhost:3001/api
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+```
+
+### Explanation of Environment Variables
+
+- `NEXTAUTH_SECRET`: A secret key used by NextAuth.js for encryption. In production, use a strong, unique secret.
+- `NEXT_PUBLIC_MAPBOX_TOKEN`: Your Mapbox API token for map functionality.
+- `API_URL`: The URL of your API. Set to `http://localhost:3001/api` for local development.
+- `GOOGLE_CLIENT_ID`: Your Google OAuth client ID for authentication.
+- `GOOGLE_CLIENT_SECRET`: Your Google OAuth client secret for authentication.
 
 ## Getting Started
 
