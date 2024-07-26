@@ -13,13 +13,13 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import ThemeToggleButton from "../theme/theme-toggle-button";
 import ButtonLogout from "./button-logout";
-import { DASHBOARD_ROUTES, PICKER_ROUTES,Role} from "@/config/routes";
+import { DASHBOARD_ROUTES, PICKER_ROUTES, Role } from "@/config/routes";
 import Logo from "../logo";
 import { GetServerSession } from "@/services/server/AuthService";
 
 export default async function Header() {
   const session = await GetServerSession();
-  const routes = session.role ==Role.PICKER ? PICKER_ROUTES : DASHBOARD_ROUTES;
+  const routes = session.role == Role.PICKER ? PICKER_ROUTES : DASHBOARD_ROUTES;
   return (
     <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
@@ -89,7 +89,12 @@ export default async function Header() {
             <DropdownMenuItem>
               <Link href="/dashboard/profile">Perfil</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>Support</DropdownMenuItem>
+            <DropdownMenuItem>
+              {/* <Link href="https://">Soporte</Link> */}
+              <Link href={"https://api.whatsapp.com/send?phone=573175536413&text=Hola,%20necesito%20ayuda%20con%20mi%20cuenta%20de%20RecyPaid"}
+                target="_blank" rel="noopener noreferrer"
+              >Soporte</Link>
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <ButtonLogout />
           </DropdownMenuContent>
