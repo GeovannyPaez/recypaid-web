@@ -1,31 +1,33 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, FC, ReactNode } from "react";
 
 type AnimatedSectionProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   delay?: number;
 };
 
-const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, className, delay = 0 }) => {
+const AnimatedSection: FC<AnimatedSectionProps> = ({ children, className = '', delay = 0 }) => {
   const sectionRef = useRef<HTMLElement>(null);
 
+  const handleIntersection: IntersectionObserverCallback = ([entry]) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('animate-fade-in');
+      }, delay);
+    }
+  };
+
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('animate-fade-in');
-          }, delay);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-      }
-    );
+    const observerOptions: IntersectionObserverInit = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
