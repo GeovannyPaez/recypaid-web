@@ -1,4 +1,3 @@
-import api from "@/lib/api";
 import { CreateUserProfileDto } from "@/types/user-profile";
 import { ApiService } from "./ApiService";
 
@@ -15,43 +14,35 @@ class ProfileService extends ApiService {
     }
 
     async create(createProfileDto: CreateUserProfileDto) {
-        try {
-            const headers = await this.authHeaders();
-            const response = await api.post(this.pathName, createProfileDto, headers);
-            return response.data;
-        } catch (error) {
-            throw this.handlerError(error);
-        }
+        return this.makeRequest({
+            method: "post",
+            endpoint: "",
+            data: createProfileDto
+        })
+
     }
 
     async get(): Promise<CreateUserProfileDto | undefined> {
-        try {
-            const response = await api.get(this.pathName, await this.authHeaders());
-            return response.data;
-        } catch (error) {
-            return undefined;
-        }
+        return this.makeRequest({
+            method: "get",
+            endpoint: "",
+            defaultErrorResponse: undefined
+        })
     }
 
     async update(updateProfileDto: CreateUserProfileDto) {
-        try {
-            const response = await api.patch(this.pathName, updateProfileDto, await this.authHeaders());
-            return response.data;
-        } catch (error) {
-            throw this.handlerError(error);
-        }
+        return this.makeRequest({
+            method: "patch",
+            endpoint: "",
+            data: updateProfileDto
+        })
     }
     async delete() {
-        try {
-            const response = await api.delete(this.pathName, await this.authHeaders());
-            return response.data
-        } catch (error) {
-            console.log(error);
-        }
+        return this.makeRequest({
+            method: "delete",
+            endpoint: ""
+        })
     }
-
-
-
 }
 
 export default ProfileService.getInstance();

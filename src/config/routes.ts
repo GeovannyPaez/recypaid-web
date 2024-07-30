@@ -19,6 +19,7 @@ export const DASHBOARD_ROUTES: Route[] = [
 export const PICKER_ROUTES: Route[] = [
     { path: '/dashboard/picker', name: 'Home', role: [Role.PICKER] },
     { path: '/dashboard/picker/orders', name: 'Pedidos', role: [Role.PICKER] },
+    { path: '/dashboard/picker/vehicle-trips', name: 'Viajes', role: [Role.PICKER] }
 ]
 
 

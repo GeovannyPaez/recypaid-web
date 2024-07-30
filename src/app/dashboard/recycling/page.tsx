@@ -4,14 +4,7 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 
-import {
-  SelectValue,
-  SelectTrigger,
-  SelectItem,
-  SelectContent,
-  Select,
-} from "@/components/ui/select";
-import { Material } from "@/mocks/recyclable-materials.mock";
+
 import RecyclingFormUser from "@/components/dashboard/recycling/recycling-form-user";
 import MaterilasService from "@/services/server/MaterilasService";
 import ProfileService from "@/services/server/ProfileService";

@@ -1,6 +1,5 @@
 import { PickerStatistics, UserStatistics } from "@/types/statistics";
 import { ApiService } from "./ApiService";
-import api from "@/lib/api";
 
 class StatisticsService extends ApiService {
     private constructor(pathName: string) {
@@ -17,23 +16,17 @@ class StatisticsService extends ApiService {
 
 
     async getUserStatistics(): Promise<UserStatistics> {
-        try {
-            const headers = await this.authHeaders();
-            const response = await api.get<UserStatistics>(`${this.pathName}/user`, headers);
-            return response.data;
-        } catch (error) {
-            throw this.handlerError(error);
-        }
+        return this.makeRequest({
+            method: "get",
+            endpoint: "/user"
+        })
     }
 
     async getPickerStatistics(): Promise<PickerStatistics> {
-        try {
-            const headers = await this.authHeaders();
-            const response = await api.get<PickerStatistics>(`${this.pathName}/picker`, headers);
-            return response.data;
-        } catch (error) {
-            throw this.handlerError(error);
-        }
+        return this.makeRequest({
+            method: "get",
+            endpoint: "/picker"
+        })
     }
 }
 

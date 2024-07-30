@@ -1,4 +1,3 @@
-import api from "@/lib/api";
 import { ApiService } from "./ApiService";
 import { Material } from "@/types/materilas";
 
@@ -17,13 +16,11 @@ class MaterialsService extends ApiService {
     }
 
     async getAllMaterials(): Promise<Material[]> {
-        try {
-            const response = await api.get<Material[]>(this.pathName);
-            return response.data;
-        } catch (error) {
-            console.error(error);
-            return []
-        }
+        return this.makeRequest<Material[]>({
+            method: 'get',
+            endpoint: '',
+            isPublic: true
+        });
     }
 
 }
