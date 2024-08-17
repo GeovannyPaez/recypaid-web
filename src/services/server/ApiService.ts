@@ -1,7 +1,6 @@
-import { AxiosError, AxiosInstance, AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { GetServerSession } from "./AuthService";
 import api from "@/lib/api";
-import { redirect } from "next/navigation";
 import { ResponseError, ResponseErrorType } from "@/errors/ResponseError";
 
 /**
@@ -71,7 +70,7 @@ export class ApiService {
             const response: AxiosResponse<T> = await api[method](
                 url,
                 method === 'get' || method === 'delete' ? config : data,
-                method === 'post' || method === 'put' ? config : undefined
+                method === 'post' || method === 'put' || method === "patch" ? config : undefined
             );
             return response.data;
         } catch (error) {
@@ -92,7 +91,7 @@ export class ApiService {
     protected handlerError(error: any) {
         if (error instanceof AxiosError) {
             if (error.response?.status === 401) {
-                redirect("/auth/login");
+                throw new ResponseError("Unauthorized", ResponseErrorType.UNAUTHORIZED)
             }
             if (error.response?.status === 404) {
                 throw new ResponseError(error.response.data.message, ResponseErrorType.NOT_FOUND)
