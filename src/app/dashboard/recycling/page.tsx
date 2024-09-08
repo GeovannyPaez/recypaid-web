@@ -1,9 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/qUsO7UiSooX
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-
 
 import RecyclingFormUser from "@/components/dashboard/recycling/recycling-form-user";
 import MaterilasService from "@/services/server/MaterilasService";

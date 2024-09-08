@@ -1,10 +1,8 @@
-// app/forgot-password/actions.ts
 'use server'
 
 import { errorAction, successAction } from '@/errors/ResponseError';
 import { ResetPassWordService } from '@/services/server/AuthService';
 import VerficationCodeService from '@/services/server/VerficationCodeService';
-import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
 const emailSchema = z.string().email();

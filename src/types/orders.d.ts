@@ -4,8 +4,8 @@ import { UserProfile } from "./user-profile";
 
 export interface CreateOrderDto {
     materials: CreateOrderItemDto[];
-    address?: string;
-    location: LocationDto;
+    address: string;
+    location?: LocationDto;
 }
 
 export interface CreateOrderItemDto {

@@ -1,27 +1,24 @@
-import * as React from "react";
-
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import MaterialCardForm from "./material-card-form";
-import { MoreVerticalIcon, PlusCircle, X } from "lucide-react";
+import { PlusCircle, X } from "lucide-react";
 
 import { Material } from "@/types/materilas";
 type SelectMaterialFormProps = {
   materials: Material[];
   handleDeleteMaterial: (material: Material) => void;
   onSelectMaterial: (id: string) => void;
-  onChageQuantityMaterial: (value: number, materialId: string) => void;
+  onChangeQuantityMaterial: (value: number, materialId: string) => void;
   selectedMaterials: Material[];
 }
 
-export default function SelectMaterialForm({ materials, selectedMaterials, onSelectMaterial, handleDeleteMaterial, onChageQuantityMaterial }: SelectMaterialFormProps) {
+export default function SelectMaterialForm({ materials, selectedMaterials, onSelectMaterial, handleDeleteMaterial, onChangeQuantityMaterial }: SelectMaterialFormProps) {
 
   const ValuesMaterials = materials.map((material) => ({
     value: material.name,
@@ -66,7 +63,7 @@ export default function SelectMaterialForm({ materials, selectedMaterials, onSel
       </Select>
       <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {selectedMaterials.map((material) => (
-          <MaterialCardForm onChageQuantityMaterial={onChageQuantityMaterial} key={material.description} material={material} />
+          <MaterialCardForm onRemoveMaterial={handleDeleteMaterial} onChangeQuantityMaterial={onChangeQuantityMaterial} key={material.description} material={material} />
         ))}
       </div>
     </>

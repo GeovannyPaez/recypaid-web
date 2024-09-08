@@ -1,59 +1,70 @@
 "use client";
-import React, { useState, useTransition } from "react";
+import React, { useEffect, useState, useTransition, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import SelectMaterialsForm from "./select-materials-form";
 import { Material, SelectMaterialItem } from "@/types/materilas";
-import { CreateOrderDto, CreateOrderItemDto, LocationDto } from "@/types/orders";
+import { CreateOrderDto, CreateOrderItemDto } from "@/types/orders";
 import { CreateOrderAction } from "@/actions/orders-actions";
 import useToastActionResponse from "@/hooks/useToastActionResponse";
 import { useRouter } from "next/navigation";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import Link from "next/link";
+import LocationDialog from "@/components/shared/location-dialog";
 
 type RecyclingFormUserProps = {
   materials: Material[];
-  address?: string
+  address?: string;
   materialIdSelect?: string;
-}
+};
 
 export default function RecyclingFormUser({ materials, address, materialIdSelect }: RecyclingFormUserProps) {
-  const initialSelectedMaterial = React.useMemo(() => {
-    if (!materialIdSelect) return null;
-    return materials.find((materia) => materia.id == materialIdSelect);
-  }, [materialIdSelect, materials]);
   const router = useRouter();
-
   const { toastActionResponse } = useToastActionResponse();
-  const [isLoading, handleTransition] = useTransition();
-  const [selectedMaterials, setSelectedMaterials] = useState<SelectMaterialItem[]>(initialSelectedMaterial ? [initialSelectedMaterial] : []);
+  const [isLoading, startTransition] = useTransition();
+  const [selectedMaterials, setSelectedMaterials] = useState<SelectMaterialItem[]>([]);
   const { location, error, getLocation } = useUserLocation();
-  const [addresState, setAddressState] = useState<string | undefined>(address);
+  const [addressState, setAddressState] = useState<string>(address || "");
+  const [isLocationDialogOpen, setIsLocationDialogOpen] = useState(false);
 
-  const onSelectMaterial = (value: string) => {
-    const index = materials.findIndex((materia) => materia.name == value);
-    if (index === -1) return;
-    if (selectedMaterials.find((material) => material.name === value)) return;
-    setSelectedMaterials((prev) => [...prev, materials[index]]);
+  const initialSelectedMaterial = useMemo(() => {
+    return materialIdSelect ? materials.find(materia => materia.id === materialIdSelect) : null;
+  }, [materialIdSelect, materials]);
+
+  useEffect(() => {
+    if (initialSelectedMaterial) {
+      setSelectedMaterials([initialSelectedMaterial]);
+    }
+  }, [initialSelectedMaterial]);
+
+  useEffect(() => {
+    const hasSeenDialogBefore = localStorage.getItem('hasSeenLocationDialog');
+    if (hasSeenDialogBefore) {
+      getLocation();
+    } else if (!location) {
+      openDialogLocation();
+    }
+  }, [location, getLocation]);
+
+  const handleSelectMaterial = (value: string) => {
+    const selectedMaterial = materials.find(materia => materia.name === value);
+    if (selectedMaterial && !selectedMaterials.some(material => material.name === value)) {
+      setSelectedMaterials(prev => [...prev, selectedMaterial]);
+    }
   };
 
   const handleDeleteMaterial = (material: Material) => {
-    setSelectedMaterials((prev) =>
-      prev.filter((prevMaterial) => prevMaterial.name !== material.name)
-    );
+    setSelectedMaterials(prev => prev.filter(prevMaterial => prevMaterial.name !== material.name));
   };
 
-  const onChageQuantityMaterial = (value: number, materialId: string) => {
-    const index = selectedMaterials.findIndex((materia) => materia.id == materialId);
-    if (index === -1) return;
-    setSelectedMaterials((prev) => {
-      const newMaterials = [...prev];
-      newMaterials[index].quantity = value;
-      return newMaterials;
-    });
-  }
-
+  const handleChangeQuantity = (value: number, materialId: string) => {
+    setSelectedMaterials(prev =>
+      prev.map(material =>
+        material.id === materialId ? { ...material, quantity: value } : material
+      )
+    );
+  };
 
   const handleGetLocation = async () => {
     await getLocation();
@@ -62,41 +73,46 @@ export default function RecyclingFormUser({ materials, address, materialIdSelect
     } else if (location) {
       toastActionResponse({ error: false, message: "Ubicación obtenida correctamente" });
     }
+    closeDialogLocation();
+    localStorage.setItem('hasSeenLocationDialog', 'true');
   };
 
+  const openDialogLocation = () => setIsLocationDialogOpen(true);
+  const closeDialogLocation = () => setIsLocationDialogOpen(false);
 
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!location) {
-      toastActionResponse({ error: true, message: "Por favor, obtén tu ubicación antes de enviar el formulario" });
-      return;
-    }
-    if (addresState === undefined || addresState.trim() === "") {
+  const validateForm = (): boolean => {
+    if (!addressState?.trim()) {
       toastActionResponse({ error: true, message: "Por favor, ingrese la dirección de recogida" });
-      return;
+      return false;
     }
     if (selectedMaterials.length === 0) {
       toastActionResponse({ error: true, message: "Seleccione al menos un material" });
-      return;
+      return false;
     }
     if (selectedMaterials.some(material => material.quantity === undefined)) {
       toastActionResponse({ error: true, message: "Especifique la cantidad aproximada de cada material" });
-      return;
+      return false;
     }
+    return true;
+  };
 
-    const materials: CreateOrderItemDto[] = selectedMaterials.map((material) => ({
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!validateForm()) return;
+
+    const materials: CreateOrderItemDto[] = selectedMaterials.map(material => ({
       materialId: material.id,
-      quantity: material.quantity,
-    })) as CreateOrderItemDto[];
+      quantity: material.quantity || 0 // solo para evitar error de tipo, igual ya se validó que no sea undefined 
+    }));
 
     const data: CreateOrderDto = {
       materials,
-      location: location,
-      address: addresState,
-    }
+      location: location || undefined,
+      address: addressState,
+    };
 
-    handleTransition(async () => {
+    startTransition(async () => {
       const res = await CreateOrderAction(data);
       toastActionResponse(res);
       if (!res.error) router.push("/dashboard/orders");
@@ -104,36 +120,48 @@ export default function RecyclingFormUser({ materials, address, materialIdSelect
   };
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit}>
-      <div>
-        <h3 className="text-lg font-semibold my-1">
-          Seleccione los materiales a reciclar y especifique la cantidad.
-          <Link href="/dashboard/recyclable-materials">
-            <p className=" inline-flex mx-1 underline"> Ver precios</p>
-          </Link>
-        </h3>
-        <SelectMaterialsForm
-          onChageQuantityMaterial={onChageQuantityMaterial}
-          onSelectMaterial={onSelectMaterial}
-          handleDeleteMaterial={handleDeleteMaterial}
-          selectedMaterials={selectedMaterials}
-          materials={materials}
-        />
-      </div>
-      <div className="grid gap-2">
-        <Label>Dirección de recogida</Label>
-        <Input defaultValue={addresState}
-          onChange={(e) => setAddressState(e.target.value)}
-          name="address" required placeholder="Dirección de recogida" />
-      </div>
-      <div className="flex justify-between items-center">
-        <Button type="button" onClick={handleGetLocation} disabled={location !== null}>
-          {location ? "Ubicación obtenida" : "Obtener ubicación"}
-        </Button>
-        <Button isLoading={isLoading} className="max-w-[200px]" type="submit">
-          Enviar solicitud
-        </Button>
-      </div>
-    </form>
+    <>
+      <form className="space-y-6" onSubmit={handleSubmit}>
+        <div>
+          <h3 className="text-lg font-semibold my-1">
+            Seleccione los materiales a reciclar y especifique la cantidad.
+            <Link href="/dashboard/recyclable-materials">
+              <p className="inline-flex mx-1 underline">Ver precios</p>
+            </Link>
+          </h3>
+          <SelectMaterialsForm
+            onChangeQuantityMaterial={handleChangeQuantity}
+            onSelectMaterial={handleSelectMaterial}
+            handleDeleteMaterial={handleDeleteMaterial}
+            selectedMaterials={selectedMaterials}
+            materials={materials}
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label>Dirección de recogida</Label>
+          <Input
+            defaultValue={addressState}
+            onChange={e => setAddressState(e.target.value)}
+            name="address"
+            required
+            placeholder="Dirección de recogida"
+          />
+        </div>
+        <div className="flex justify-between items-center">
+          <Button type="button" onClick={openDialogLocation} disabled={!!location}>
+            {location ? "Ubicación obtenida" : "Obtener ubicación"}
+          </Button>
+          <Button isLoading={isLoading} className="max-w-[200px]" type="submit">
+            Enviar solicitud
+          </Button>
+        </div>
+      </form>
+
+      <LocationDialog
+        isOpen={isLocationDialogOpen}
+        onClose={closeDialogLocation}
+        onGetLocation={handleGetLocation}
+      />
+    </>
   );
 }
