@@ -12,6 +12,7 @@ import { AcceptOrderAction, RejectOrderAction } from '@/actions/orders-actions';
 import ButtonHandleServerAction from '@/components/ui/button-handle-server-action';
 import MaterilasService from '@/services/server/MaterilasService';
 import { Role } from '@/config/routes';
+import { formatDate } from '@/lib/utils';
 
 type OrderDetailsPageProps = {
     id: string
@@ -27,15 +28,7 @@ export default async function OrderDetails({ id, role }: OrderDetailsPageProps) 
 
     const { user, status, createdAt, total, items, userLocation } = orderDetails;
     const { latitude, longitude } = userLocation;
-    const formatDate = (dateString: Date) => {
-        return new Date(dateString).toLocaleDateString('es-ES', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-    };
+
 
     return (
         <Card className="w-full max-w-3xl mx-auto">
