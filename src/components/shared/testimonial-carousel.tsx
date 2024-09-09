@@ -10,19 +10,19 @@ import {
 
 const testimonials = [
   {
-    quote: "RecyPaid ha revolucionado nuestra vida familiar. Antes, apenas separábamos la basura, pero ahora es toda una actividad en casa. Ver cómo se llenan las bolsas de reciclaje y saber que estamos cuidando nuestro hermoso país (¡y ganando algo de platica!) nos llena de orgullo.",
+    quote: "Recypaid ha revolucionado nuestra vida familiar. Antes, apenas separábamos la basura, pero ahora es toda una actividad en casa. Ver cómo se llenan las bolsas de reciclaje y saber que estamos cuidando nuestro hermoso país (¡y ganando algo de platica!) nos llena de orgullo.",
     name: "María Gómez",
     since: "Con nosotros desde abril pasado"
   },
   {
-    quote: "Jamás imaginé que reciclar pudiera ser tan sencillo y motivador. RecyPaid me ha hecho más consciente de lo que consumo y desecho. Ahora, antes de botar algo, siempre me pregunto si se puede reciclar. Y pues, el ingreso extra no cae nada mal en estos tiempos.",
+    quote: "Jamás imaginé que reciclar pudiera ser tan sencillo y motivador. Recypaid me ha hecho más consciente de lo que consumo y desecho. Ahora, antes de botar algo, siempre me pregunto si se puede reciclar. Y pues, el ingreso extra no cae nada mal en estos tiempos.",
     name: "Juan Pérez",
-    since: "Reciclando con RecyPaid hace ya medio año"
+    since: "Reciclando con Recypaid hace ya medio año"
   },
   {
-    quote: "Al comienzo no estaba muy convencida, pero RecyPaid me demostró que pequeñas acciones pueden generar grandes cambios. Me encanta ver mi barrio más limpio y cómo entre vecinos nos animamos a reciclar más. ¡Es como si hubiéramos empezado una revolución verde en nuestra comunidad!",
+    quote: "Al comienzo no estaba muy convencida, pero Recypaid me demostró que pequeñas acciones pueden generar grandes cambios. Me encanta ver mi barrio más limpio y cómo entre vecinos nos animamos a reciclar más. ¡Es como si hubiéramos empezado una revolución verde en nuestra comunidad!",
     name: "Ana Martínez",
-    since: "Parte de la familia RecyPaid desde junio"
+    since: "Parte de la familia Recypaid desde junio"
   }
 ]
 
@@ -33,10 +33,10 @@ export default function TestimonialCarousel() {
         <div className="flex flex-col items-center text-center space-y-4">
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter text-primary-foreground sm:text-4xl md:text-5xl">
-              Voces de nuestra comunidad RecyPaid
+              Voces de nuestra comunidad Recypaid
             </h2>
             <p className="max-w-[700px] text-muted-foreground md:text-xl">
-              Descubre cómo RecyPaid está cambiando la forma en que los colombianos vemos el reciclaje.
+              Descubre cómo Recypaid está cambiando la forma en que los colombianos vemos el reciclaje.
             </p>
           </div>
           <Carousel opts={{

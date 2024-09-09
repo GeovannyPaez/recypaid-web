@@ -33,7 +33,7 @@ export default function LayoutPublic({ children }: LayoutProps) {
                         className="flex items-center gap-2 text-lg font-semibold md:text-base h-12 w-12"
                     >
                         <Logo width={100} height={100} />
-                        <span className="sr-only">RecyPaid</span>
+                        <span className="sr-only">Recypaid</span>
                     </Link>
                     <div className="flex justify-between w-full items-center">
                         <div className="flex gap-4">
@@ -69,7 +69,7 @@ export default function LayoutPublic({ children }: LayoutProps) {
                                     className="flex items-center gap-2 text-lg font-semibold"
                                 >
                                     <Logo />
-                                    <span className="sr-only">RecyPaid</span>
+                                    <span className="sr-only">Recypaid</span>
                                 </Link>
                             </SheetTrigger>
                             {routes.map((route) => (
@@ -93,7 +93,7 @@ export default function LayoutPublic({ children }: LayoutProps) {
                     <div className="space-y-4">
                         <h3 className="text-lg font-semibold">Sobre nosotros</h3>
                         <p className="text-gray-300">
-                            RecyPaid es una plataforma que te ayuda a reciclar de manera
+                            Recypaid es una plataforma que te ayuda a reciclar de manera
                             fácil y recompensada. Únete a nuestra comunidad y juntos
                             construyamos un futuro más sostenible.
                         </p>
@@ -115,7 +115,7 @@ export default function LayoutPublic({ children }: LayoutProps) {
                                     href="#"
                                 >
                                     <Mail className="h-5 w-5" />
-                                    recypaid@gmail.com
+                                    Recypaid@gmail.com
                                 </Link>
                             </li>
                             <li>
@@ -140,7 +140,7 @@ export default function LayoutPublic({ children }: LayoutProps) {
                     </div>
                 </div>
                 <div className="mt-8 border-t border-green-800 pt-4 text-center text-sm text-gray-400">
-                    © 2024 RecyPaid. Todos los derechos reservados.
+                    © 2024 Recypaid. Todos los derechos reservados.
                 </div>
             </footer>
         </div>

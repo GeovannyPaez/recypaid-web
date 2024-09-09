@@ -6,11 +6,11 @@ type Props = Readonly<{
 }>;
 export const metadata: Metadata = {
   title: {
-    default: "Dashboard | RecyPaid",
-    template: "%s | RecyPaid Dashboard"
+    default: "Dashboard | Recypaid",
+    template: "%s | Recypaid Dashboard"
   },
-  description: "Gestiona tus actividades de reciclaje, ve tus recompensas y contribuye al medio ambiente con RecyPaid.",
-  keywords: "dashboard, reciclaje, recompensas, medio ambiente, RecyPaid, Colombia",
+  description: "Gestiona tus actividades de reciclaje, ve tus recompensas y contribuye al medio ambiente con Recypaid.",
+  keywords: "dashboard, reciclaje, recompensas, medio ambiente, Recypaid, Colombia",
   robots: "noindex, nofollow", // Typically, dashboard pages are not indexed for privacy reasons
 }
 export default function DashboardLayout({ children }: Props) {

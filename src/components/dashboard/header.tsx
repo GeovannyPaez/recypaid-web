@@ -91,7 +91,7 @@ export default async function Header() {
             </DropdownMenuItem>
             <DropdownMenuItem>
               {/* <Link href="https://">Soporte</Link> */}
-              <Link href={"https://api.whatsapp.com/send?phone=573175536413&text=Hola,%20necesito%20ayuda%20con%20mi%20cuenta%20de%20RecyPaid"}
+              <Link href={"https://api.whatsapp.com/send?phone=573175536413&text=Hola,%20necesito%20ayuda%20con%20mi%20cuenta%20de%20Recypaid"}
                 target="_blank" rel="noopener noreferrer"
               >Soporte</Link>
             </DropdownMenuItem>

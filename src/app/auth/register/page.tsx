@@ -12,20 +12,20 @@ import { Separator } from "@/components/ui/separator";
 import ButtonGoogleAuth from "@/components/auth/button-google-auth";
 
 export const metadata: Metadata = {
-  title: "Regístrate en RecyPaid | Únete al Reciclaje a Domicilio",
-  description: "Crea tu cuenta en RecyPaid y comienza a reciclar desde casa. Únete a la comunidad de reciclaje más grande de Colombia y gana recompensas por tus esfuerzos.",
-  keywords: "registro, crear cuenta, RecyPaid, reciclaje, domicilio, Colombia, recompensas",
+  title: "Regístrate en Recypaid | Únete al Reciclaje a Domicilio",
+  description: "Crea tu cuenta en Recypaid y comienza a reciclar desde casa. Únete a la comunidad de reciclaje más grande de Colombia y gana recompensas por tus esfuerzos.",
+  keywords: "registro, crear cuenta, Recypaid, reciclaje, domicilio, Colombia, recompensas",
   openGraph: {
-    title: "Únete a RecyPaid - Reciclaje a Domicilio en Colombia",
-    description: "Regístrate en RecyPaid y comienza tu viaje de reciclaje. Gana dinero mientras ayudas al planeta.",
-    url: "https://www.recypaid.com/auth/register",
-    siteName: "RecyPaid",
+    title: "Únete a Recypaid - Reciclaje a Domicilio en Colombia",
+    description: "Regístrate en Recypaid y comienza tu viaje de reciclaje. Gana dinero mientras ayudas al planeta.",
+    url: "https://www.Recypaid.com/auth/register",
+    siteName: "Recypaid",
     images: [
       // {
-      //   url: "https://www.recypaid.com/register-og-image.jpg",
+      //   url: "https://www.Recypaid.com/register-og-image.jpg",
       //   width: 1200,
       //   height: 630,
-      //   alt: "Registro en RecyPaid",
+      //   alt: "Registro en Recypaid",
       // },
     ],
     locale: "es_CO",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   // twitter: {
   //   card: "summary_large_image",
-  //   title: "Regístrate en RecyPaid - Reciclaje a Domicilio",
-  //   description: "Crea tu cuenta en RecyPaid y únete a la revolución del reciclaje en Colombia.",
-  //   images: ["https://www.recypaid.com/register-twitter-image.jpg"],
+  //   title: "Regístrate en Recypaid - Reciclaje a Domicilio",
+  //   description: "Crea tu cuenta en Recypaid y únete a la revolución del reciclaje en Colombia.",
+  //   images: ["https://www.Recypaid.com/register-twitter-image.jpg"],
   // },
   robots: "noindex, nofollow", // Typically, registration pages are not indexed
 };

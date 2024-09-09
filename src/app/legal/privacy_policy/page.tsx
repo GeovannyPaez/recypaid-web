@@ -81,7 +81,7 @@ export default function Component() {
                         con nosotros:
                     </p>
                     <ul className="list-disc pl-6 text-muted-foreground space-y-2">
-                        <li>Correo electrónico: recypaid@gmail.com</li>
+                        <li>Correo electrónico: Recypaid@gmail.com</li>
                         <li>Teléfono: +57 (317) 553-6413</li>
                         <li>Dirección: Calle 3, #5433 Motilones, Cucuta, Colombia</li>
                     </ul>

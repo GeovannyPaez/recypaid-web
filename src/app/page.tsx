@@ -20,7 +20,7 @@ export default function Home() {
         <div className="container px-4 md:px-6 grid md:grid-cols-2 gap-8 items-center">
           <div className="space-y-4">
             <h1 className="text-3xl text-primary-foreground font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              Recicla con RecyPaid
+              Recicla con Recypaid
             </h1>
             <p className="text-muted-foreground md:text-xl ">
               Únete a nuestra comunidad de recicladores y ayuda a crear un

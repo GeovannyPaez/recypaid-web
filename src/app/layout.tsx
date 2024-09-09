@@ -11,21 +11,21 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "RecyPaid | Reciclaje a Domicilio en Colombia",
-  description: "Recicla y gana dinero con RecyPaid, la plataforma de reciclaje a domicilio más grande de Colombia. Contribuye al medio ambiente y obtén recompensas.",
-  keywords: "reciclaje, domicilio, Colombia, ganar dinero, medio ambiente, RecyPaid",
-  authors: [{ name: "RecyPaid" }],
+  title: "Recypaid | Reciclaje a Domicilio en Colombia",
+  description: "Recicla y gana dinero con Recypaid, la plataforma de reciclaje a domicilio más grande de Colombia. Contribuye al medio ambiente y obtén recompensas.",
+  keywords: "reciclaje, domicilio, Colombia, ganar dinero, medio ambiente, Recypaid",
+  authors: [{ name: "Recypaid" }],
   openGraph: {
-    title: "RecyPaid - Reciclaje a Domicilio en Colombia",
-    description: "Únete a RecyPaid y comienza a reciclar desde casa. Gana dinero mientras ayudas al planeta.",
-    url: "https://recypaid.com",
-    siteName: "RecyPaid",
+    title: "Recypaid - Reciclaje a Domicilio en Colombia",
+    description: "Únete a Recypaid y comienza a reciclar desde casa. Gana dinero mientras ayudas al planeta.",
+    url: "https://Recypaid.com",
+    siteName: "Recypaid",
     images: [
       {
-        url: "https://recypaid.com/icon.png",
+        url: "https://Recypaid.com/icon.png",
         width: 1200,
         height: 630,
-        alt: "RecyPaid - Reciclaje a Domicilio",
+        alt: "Recypaid - Reciclaje a Domicilio",
       },
     ],
     locale: "es_CO",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "RecyPaid - Reciclaje a Domicilio en Colombia",
-    description: "Recicla desde casa y gana dinero con RecyPaid. ¡Únete ahora!",
-    // images: ["https://recypaid.com/twitter-image.jpg"],
+    title: "Recypaid - Reciclaje a Domicilio en Colombia",
+    description: "Recicla desde casa y gana dinero con Recypaid. ¡Únete ahora!",
+    // images: ["https://Recypaid.com/twitter-image.jpg"],
   },
   robots: "index, follow",
   // themeColor: [

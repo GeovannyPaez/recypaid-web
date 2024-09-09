@@ -6,22 +6,22 @@ import ButtonGoogleAuth from "@/components/auth/button-google-auth";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-  title: "Iniciar Sesión | RecyPaid - Reciclaje a Domicilio",
-  description: "Accede a tu cuenta de RecyPaid para gestionar tus servicios de reciclaje a domicilio y ver tus recompensas.",
-  keywords: "login, iniciar sesión, RecyPaid, reciclaje, domicilio, Colombia",
+  title: "Iniciar Sesión | Recypaid - Reciclaje a Domicilio",
+  description: "Accede a tu cuenta de Recypaid para gestionar tus servicios de reciclaje a domicilio y ver tus recompensas.",
+  keywords: "login, iniciar sesión, Recypaid, reciclaje, domicilio, Colombia",
   openGraph: {
-    title: "Iniciar Sesión en RecyPaid",
-    description: "Accede a tu cuenta de RecyPaid y comienza a reciclar desde casa.",
-    url: "https://www.recypaid.com/auth/login",
-    siteName: "RecyPaid",
+    title: "Iniciar Sesión en Recypaid",
+    description: "Accede a tu cuenta de Recypaid y comienza a reciclar desde casa.",
+    url: "https://www.Recypaid.com/auth/login",
+    siteName: "Recypaid",
     locale: "es_CO",
     type: "website",
   },
   // twitter: {
   //   card: "summary_large_image",
-  //   title: "Iniciar Sesión en RecyPaid - Reciclaje a Domicilio",
-  //   description: "Accede a tu cuenta de RecyPaid y gestiona tus servicios de reciclaje.",
-  //   images: ["https://www.recypaid.com/login-twitter-image.jpg"],
+  //   title: "Iniciar Sesión en Recypaid - Reciclaje a Domicilio",
+  //   description: "Accede a tu cuenta de Recypaid y gestiona tus servicios de reciclaje.",
+  //   images: ["https://www.Recypaid.com/login-twitter-image.jpg"],
   // },
   robots: "noindex, nofollow", // Typically, login pages are not indexed
 };
