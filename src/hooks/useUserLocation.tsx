@@ -6,6 +6,7 @@ interface UseUserLocationResult {
     error: string | null;
     isLoading: boolean;
     permissionGranted: boolean | null;
+    setLocation: (location: LocationDto | null) => void;
     getLocation: () => Promise<void>;
 }
 
@@ -72,5 +73,5 @@ export const useUserLocation = (): UseUserLocationResult => {
         }
     }, [checkPermission, permissionGranted]);
 
-    return { location, error, isLoading, permissionGranted, getLocation };
+    return { location, error, isLoading, permissionGranted, getLocation, setLocation };
 };

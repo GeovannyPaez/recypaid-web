@@ -15,18 +15,18 @@ export default function LocationDialog({ isOpen, onClose, onGetLocation }: Locat
                     <DialogTitle>Compartir ubicación</DialogTitle>
                     <DialogDescription>
                         Compartir tu ubicación nos ayudará a que los recolectores puedan llegar más fácilmente a tu hogar.
-                        Sin embargo, esto es completamente opcional.
+                        Sin embargo, esto es completamente opcional pero, asegúrate de dar una dirección clara para que no haya problemas.
                     </DialogDescription>
                 </DialogHeader>
                 <div className="flex justify-between mt-4">
-                    <Button onClick={onClose} variant="ghost">
-                        Continuar sin compartir
+                    <Button onClick={onClose} variant="secondary">
+                        Cancelar
                     </Button>
                     <Button onClick={() => {
                         onClose();
                         onGetLocation();
                     }}>
-                        Compartir ubicación
+                        Aceptar
                     </Button>
                 </div>
             </DialogContent>

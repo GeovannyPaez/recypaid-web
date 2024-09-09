@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useTransition, useMemo } from "react";
+import { useEffect, useState, useTransition, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import Link from "next/link";
 import LocationDialog from "@/components/shared/location-dialog";
+import { Switch } from "@/components/ui/switch";
 
 type RecyclingFormUserProps = {
   materials: Material[];
@@ -24,7 +25,7 @@ export default function RecyclingFormUser({ materials, address, materialIdSelect
   const { toastActionResponse } = useToastActionResponse();
   const [isLoading, startTransition] = useTransition();
   const [selectedMaterials, setSelectedMaterials] = useState<SelectMaterialItem[]>([]);
-  const { location, error, getLocation } = useUserLocation();
+  const { location, error, getLocation, setLocation } = useUserLocation();
   const [addressState, setAddressState] = useState<string>(address || "");
   const [isLocationDialogOpen, setIsLocationDialogOpen] = useState(false);
 
@@ -45,7 +46,8 @@ export default function RecyclingFormUser({ materials, address, materialIdSelect
     } else if (!location) {
       openDialogLocation();
     }
-  }, [location, getLocation]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSelectMaterial = (value: string) => {
     const selectedMaterial = materials.find(materia => materia.name === value);
@@ -139,18 +141,27 @@ export default function RecyclingFormUser({ materials, address, materialIdSelect
         </div>
         <div className="grid gap-2">
           <Label>Dirección de recogida</Label>
-          <Input
-            defaultValue={addressState}
-            onChange={e => setAddressState(e.target.value)}
-            name="address"
-            required
-            placeholder="Dirección de recogida"
-          />
+          <div className="flex gap-2">
+            <Input
+              defaultValue={addressState}
+              onChange={e => setAddressState(e.target.value)}
+              name="address"
+              required
+              placeholder="Dirección de recogida"
+            />
+          </div>
+          <div className="flex items-center space-x-2">
+            <Switch id="share-location"
+              onCheckedChange={(checked) => {
+                if (checked) return openDialogLocation();
+                setLocation(null);
+              }}
+              checked={location !== null}
+            />
+            <Label className=" text-muted-foreground" htmlFor="share-location">Compartir ubicación actual</Label>
+          </div>
         </div>
-        <div className="flex justify-between items-center">
-          <Button type="button" onClick={openDialogLocation} disabled={!!location}>
-            {location ? "Ubicación obtenida" : "Obtener ubicación"}
-          </Button>
+        <div className="flex justify-end items-center">
           <Button isLoading={isLoading} className="max-w-[200px]" type="submit">
             Enviar solicitud
           </Button>
