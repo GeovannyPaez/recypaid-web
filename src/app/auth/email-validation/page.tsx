@@ -4,12 +4,14 @@ import SendEmailCode from "@/components/auth/email-validation/send-email-code-fr
 type EmailValidationPageProps = {
     searchParams: {
         email: string;
+        isAppMobile: string;
     };
 };
 
 export default function EmailValidationPage({
     searchParams,
 }: EmailValidationPageProps) {
+    const isAppMobile = searchParams?.isAppMobile === "true";
     return (
         <div className=" mx-4 flex my-8  items-center">
             <section className="mx-auto max-w-md space-y-6 p-3 bg-card rounded-sm">
@@ -21,7 +23,7 @@ export default function EmailValidationPage({
                 </div>
                 <div className="space-y-4">
                     <SendEmailCode email={searchParams?.email || ""} />
-                    <SendCodeForm email={searchParams.email} />
+                    <SendCodeForm isAppMobile={isAppMobile} email={searchParams.email} />
                 </div>
             </section>
         </div>

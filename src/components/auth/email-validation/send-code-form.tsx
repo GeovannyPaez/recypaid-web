@@ -12,8 +12,9 @@ import { useRouter } from "next/navigation";
 import { verifyEmailCodeAction } from "@/actions/auth.actions";
 type SendCodeFormProps = {
   email: string;
+  isAppMobile: boolean;
 };
-export default function SendCodeForm({ email }: SendCodeFormProps) {
+export default function SendCodeForm({ email, isAppMobile }: SendCodeFormProps) {
   const [state, formAction] = useFormState(verifyEmailCodeAction, {
     message: "",
     error: false
@@ -25,6 +26,10 @@ export default function SendCodeForm({ email }: SendCodeFormProps) {
   const isButtonDisabled = email === "" || !isCompleted;
   useEffect(() => {
     if (!error && message) {
+      if (isAppMobile) {
+        window.location.href = `recypaid://email-verified`;
+        return;
+      }
       router.push("/auth/login");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
