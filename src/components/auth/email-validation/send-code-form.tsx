@@ -37,11 +37,7 @@ export default function SendCodeForm({ email, isAppMobile }: SendCodeFormProps) 
 
   return (
     <form
-      // action={formAction}
-      onSubmit={(e) => {
-        e.preventDefault();
-        window.location.href = `recypaid://email-verified`;
-      }}
+      action={formAction}
       className="pt-4">
       <div className="grid gap-2 w-full">
         <input type="hidden" name="email" value={email} />
@@ -70,7 +66,9 @@ export default function SendCodeForm({ email, isAppMobile }: SendCodeFormProps) 
           </p>
         )}
       </div>
-      <ButtonServerAction className="mt-2">
+      <ButtonServerAction
+        disabled={isButtonDisabled}
+        className="mt-2">
         Verificar Codigo
       </ButtonServerAction>
     </form>
