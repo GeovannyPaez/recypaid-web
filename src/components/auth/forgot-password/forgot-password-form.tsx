@@ -65,6 +65,7 @@ export default function ForgotPasswordForm({ isAppMobile = false }: ForgotPasswo
             if (!result.error) {
                 if (isAppMobile) {
                     window.location.href = 'recypaid://auth';
+                    return;
                 }
                 router.push('/auth/login');
             }
