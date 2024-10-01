@@ -12,7 +12,11 @@ import { useRouter } from 'next/navigation';
 
 type Step = 1 | 2 | 3;
 
-export default function ForgotPasswordForm() {
+type ForgotPasswordFormProps = {
+    isAppMobile?: boolean;
+};
+
+export default function ForgotPasswordForm({ isAppMobile = false }: ForgotPasswordFormProps) {
     const [email, setEmail] = useState('');
     const [verificationCode, setVerificationCode] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -58,7 +62,12 @@ export default function ForgotPasswordForm() {
         try {
             const result = await resetPassword(email, verificationCode, newPassword);
             toastActionResponse(result);
-            if (!result.error) router.push('/auth/login');
+            if (!result.error) {
+                if (isAppMobile) {
+                    window.location.href = 'recypaid://auth';
+                }
+                router.push('/auth/login');
+            }
         } catch (error) {
             toastActionResponse(errorAction('Ocurrió un error. Por favor, intente de nuevo.'));
         }

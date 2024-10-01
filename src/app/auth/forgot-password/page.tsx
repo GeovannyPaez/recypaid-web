@@ -2,7 +2,13 @@ import { Suspense } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import ForgotPasswordForm from '@/components/auth/forgot-password/forgot-password-form';
 
-export default function ForgotPasswordPage() {
+type ForgotPasswordPageProps = {
+    searchParams: {
+        isAppMobile: string;
+    }
+};
+export default function ForgotPasswordPage({ searchParams }: ForgotPasswordPageProps) {
+    const isAppMobile = searchParams?.isAppMobile === "true";
     return (
         <div className="flex justify-center items-center my-6 mx-4">
             <Card className="w-full max-w-md">
@@ -14,7 +20,9 @@ export default function ForgotPasswordPage() {
                 </CardHeader>
                 <CardContent>
                     <Suspense fallback={<div>Loading...</div>}>
-                        <ForgotPasswordForm />
+                        <ForgotPasswordForm isAppMobile={
+                            isAppMobile
+                        } />
                     </Suspense>
                 </CardContent>
                 <CardFooter className="justify-center">
