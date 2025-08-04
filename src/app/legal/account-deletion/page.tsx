@@ -10,12 +10,12 @@ import { Trash2, Shield, Clock, Database, Mail, Phone, User, AlertTriangle } fro
 
 export default function Component() {
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-background py-8">
       <div className="container mx-auto max-w-4xl px-4">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Eliminación de Cuenta - Ciclo</h1>
-          <p className="text-gray-600">Desarrollado por Geovanny Paez</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">Eliminación de Cuenta - Ciclo</h1>
+          <p className="text-muted-foreground">Desarrollado por Geovanny Paez</p>
           <Badge variant="secondary" className="mt-2">
             Aplicación de Reciclaje
           </Badge>
@@ -34,20 +34,20 @@ export default function Component() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
-                <User className="h-5 w-5 text-green-600" />
+              <div className="flex items-center gap-3 p-3 bg-muted rounded-lg">
+                <User className="h-5 w-5 text-muted-foreground" />
                 <span className="font-medium">Nombre de usuario y contraseña</span>
               </div>
-              <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
-                <Mail className="h-5 w-5 text-green-600" />
+              <div className="flex items-center gap-3 p-3 bg-muted rounded-lg">
+                <Mail className="h-5 w-5 text-muted-foreground" />
                 <span className="font-medium">Correo electrónico y contraseña</span>
               </div>
-              <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
-                <Phone className="h-5 w-5 text-green-600" />
+              <div className="flex items-center gap-3 p-3 bg-muted rounded-lg">
+                <Phone className="h-5 w-5 text-muted-foreground" />
                 <span className="font-medium">Número de teléfono y verificación</span>
               </div>
-              <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
-                <Shield className="h-5 w-5 text-green-600" />
+              <div className="flex items-center gap-3 p-3 bg-muted rounded-lg">
+                <Shield className="h-5 w-5 text-muted-foreground" />
                 <span className="font-medium">OAuth (Google, Facebook)</span>
               </div>
             </div>
@@ -68,8 +68,8 @@ export default function Component() {
           <CardContent>
             <div className="space-y-6">
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                  <span className="text-blue-600 font-semibold">1</span>
+                <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                  <span className="text-primary font-semibold">1</span>
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Completa el formulario de solicitud</h3>
@@ -80,8 +80,8 @@ export default function Component() {
               </div>
 
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                  <span className="text-blue-600 font-semibold">2</span>
+                <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                  <span className="text-primary font-semibold">2</span>
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Verificación de identidad</h3>
@@ -93,8 +93,8 @@ export default function Component() {
               </div>
 
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                  <span className="text-blue-600 font-semibold">3</span>
+                <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                  <span className="text-primary font-semibold">3</span>
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Procesamiento de la eliminación</h3>
@@ -119,54 +119,54 @@ export default function Component() {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h3 className="font-semibold text-green-700 mb-3 flex items-center gap-2">
+                <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
                   <Trash2 className="h-4 w-4" />
                   Datos que se eliminan inmediatamente:
                 </h3>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start gap-2">
-                    <span className="text-green-600">•</span>
+                    <span className="text-primary">•</span>
                     Información personal del perfil (nombre, foto, biografía)
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-600">•</span>
+                    <span className="text-primary">•</span>
                     Historial de actividades de reciclaje
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-600">•</span>
+                    <span className="text-primary">•</span>
                     Puntos y recompensas acumuladas
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-600">•</span>
+                    <span className="text-primary">•</span>
                     Preferencias y configuraciones de la aplicación
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-600">•</span>
+                    <span className="text-primary">•</span>
                     Datos de ubicación y rutas de reciclaje
                   </li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="font-semibold text-orange-700 mb-3 flex items-center gap-2">
+                <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
                   <Clock className="h-4 w-4" />
                   Datos conservados temporalmente:
                 </h3>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start gap-2">
-                    <span className="text-orange-600">•</span>
+                    <span className="text-muted-foreground">•</span>
                     Registros de transacciones (30 días) - Por requisitos legales
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-orange-600">•</span>
+                    <span className="text-muted-foreground">•</span>
                     Logs de seguridad (90 días) - Para prevenir fraudes
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-orange-600">•</span>
+                    <span className="text-muted-foreground">•</span>
                     Datos de facturación (7 años) - Por obligaciones fiscales
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-orange-600">•</span>
+                    <span className="text-muted-foreground">•</span>
                     Reportes de problemas técnicos (1 año) - Para mejoras del servicio
                   </li>
                 </ul>
@@ -257,26 +257,26 @@ export default function Component() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h3 className="font-semibold mb-2">Desarrollador</h3>
-                <p className="text-gray-600">Geovanny Paez</p>
+                <p className="text-muted-foreground">Geovanny Paez</p>
               </div>
               <div>
                 <h3 className="font-semibold mb-2">Aplicación</h3>
-                <p className="text-gray-600">Ciclo - Aplicación de Reciclaje</p>
+                <p className="text-muted-foreground">Ciclo - Aplicación de Reciclaje</p>
               </div>
               <div>
                 <h3 className="font-semibold mb-2">Soporte</h3>
-                <p className="text-gray-600">soporte@cicloapp.com</p>
+                <p className="text-muted-foreground">soporte@cicloapp.com</p>
               </div>
               <div>
                 <h3 className="font-semibold mb-2">Tiempo de respuesta</h3>
-                <p className="text-gray-600">5-7 días hábiles</p>
+                <p className="text-muted-foreground">5-7 días hábiles</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Footer */}
-        <div className="text-center mt-8 text-sm text-gray-500">
+        <div className="text-center mt-8 text-sm text-muted-foreground">
           <p>Esta página cumple con los requisitos de Google Play Store para la eliminación de cuentas de usuario.</p>
           <p className="mt-1">Última actualización: {new Date().toLocaleDateString("es-ES")}</p>
         </div>
