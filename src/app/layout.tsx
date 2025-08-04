@@ -11,7 +11,7 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "Recypaid | Vende o Dona Tus Reciclables - Impacto Social y Ambiental",
+  title: "Ciclo | Vende o Dona Tus Reciclables - Impacto Social y Ambiental",
   description: "Conecta con recicladores locales para vender o donar tus materiales reciclables. Genera ingresos extra o ayuda a tu comunidad mientras contribuyes al desarrollo sostenible y la acción climática.",
   keywords: [
     "reciclaje Colombia",
@@ -30,23 +30,23 @@ export const metadata: Metadata = {
     "recicladores locales",
     "papel cartón plástico metal"
   ].join(", "),
-  authors: [{ name: "Recypaid Team" }],
-  creator: "Recypaid",
-  publisher: "Recypaid",
+  authors: [{ name: "Ciclo Team" }],
+  creator: "Ciclo",
+  publisher: "Ciclo",
   category: "Sostenibilidad y Medio Ambiente",
   classification: "Aplicación de Reciclaje y Sostenibilidad",
   
   openGraph: {
-    title: "Recypaid - Vende o Dona Reciclables | Impacto Social y Ambiental",
+    title: "Ciclo - Vende o Dona Reciclables | Impacto Social y Ambiental",
     description: "Plataforma que conecta hogares con recicladores para generar ingresos o ayudar a la comunidad. Contribuye a los ODS: fin de la pobreza, reducción de desigualdades y acción por el clima.",
-    url: "https://recypaid.com",
-    siteName: "Recypaid",
+    url: "https://ciclo.com",
+    siteName: "Ciclo",
     images: [
       {
-        url: "https://recypaid.com/og-image.jpg",
+        url: "https://Ciclo.com/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Recypaid - Plataforma de reciclaje con impacto social y ambiental",
+        alt: "Ciclo - Plataforma de reciclaje con impacto social y ambiental",
       },
     ],
     locale: "es_CO",
@@ -54,14 +54,6 @@ export const metadata: Metadata = {
     countryName: "Colombia",
   },
   
-  twitter: {
-    card: "summary_large_image",
-    site: "@recypaid",
-    creator: "@recypaid",
-    title: "Recypaid - Vende o Dona Reciclables con Impacto Social",
-    description: "🌱 Genera ingresos vendiendo reciclables o ayuda donándolos. Contribuye a los ODS y construye una comunidad más sostenible. ♻️💚",
-    images: ["https://recypaid.com/twitter-card.jpg"],
-  },
   
   robots: {
     index: true,
@@ -76,10 +68,10 @@ export const metadata: Metadata = {
   },
   
   alternates: {
-    canonical: "https://recypaid.com",
+    canonical: "https://ciclo.com",
     languages: {
-      "es-CO": "https://recypaid.com",
-      "es": "https://recypaid.com/es",
+      "es-CO": "https://ciclo.com",
+      "es": "https://Ciclo.com/es",
     },
   },
   
@@ -107,12 +99,12 @@ export default function RootLayout({
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://recypaid.com/#organization",
-        "name": "Recypaid",
-        "url": "https://recypaid.com",
+        "@id": "https://Ciclo.com/#organization",
+        "name": "Ciclo",
+        "url": "https://Ciclo.com",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://recypaid.com/logo.png",
+          "url": "https://Ciclo.com/logo.png",
           "width": 512,
           "height": 512
         },
@@ -123,25 +115,25 @@ export default function RootLayout({
           "addressRegion": "Colombia"
         },
         "sameAs": [
-          "https://facebook.com/recypaid",
-          "https://twitter.com/recypaid",
-          "https://instagram.com/recypaid"
+          "https://facebook.com/Ciclo",
+          "https://twitter.com/Ciclo",
+          "https://instagram.com/Ciclo"
         ]
       },
       {
         "@type": "WebSite",
-        "@id": "https://recypaid.com/#website",
-        "url": "https://recypaid.com",
-        "name": "Recypaid",
+        "@id": "https://ciclo.com/#website",
+        "url": "https://ciclo.com",
+        "name": "Ciclo",
         "description": "Plataforma para vender o donar materiales reciclables con impacto social y ambiental",
         "publisher": {
-          "@id": "https://recypaid.com/#organization"
+          "@id": "https://ciclo.com/#organization"
         },
         "inLanguage": "es-CO"
       },
       {
         "@type": "MobileApplication",
-        "name": "Recypaid",
+        "name": "Ciclo",
         "operatingSystem": ["iOS", "Android"],
         "applicationCategory": "LifestyleApplication",
         "description": "App móvil para conectar hogares con recicladores, generar ingresos y contribuir al desarrollo sostenible",
@@ -158,10 +150,10 @@ export default function RootLayout({
       },
       {
         "@type": "Service",
-        "name": "Servicio de Reciclaje Recypaid",
+        "name": "Servicio de Reciclaje Ciclo",
         "description": "Conectamos hogares con recicladores para la compra-venta y donación de materiales reciclables",
         "provider": {
-          "@id": "https://recypaid.com/#organization"
+          "@id": "https://Ciclo.com/#organization"
         },
         "areaServed": {
           "@type": "Country",
