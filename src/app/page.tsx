@@ -19,7 +19,7 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 
-export default function RecypaidLanding() {
+export default function CicloLanding() {
   return (
     <>
       {/* Hero Section */}
@@ -28,7 +28,7 @@ export default function RecypaidLanding() {
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
             <div className="space-y-6 text-center lg:text-left">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-app-highlight">
-                Recypaid: vende o dona tus reciclables
+                Ciclo: vende o dona tus reciclables
               </h1>
               <p className="text-xl md:text-2xl text-app-muted">
                 Monetiza o dona tus materiales reciclables mientras cuidas el planeta
@@ -64,7 +64,7 @@ export default function RecypaidLanding() {
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-app-highlight">¿De qué va?</h2>
           <p className="text-lg md:text-xl mb-12 leading-relaxed text-app-muted">
-            Recypaid es una plataforma móvil que conecta hogares con recicladores, permitiéndote vender tus materiales
+            Ciclo es una plataforma móvil que conecta hogares con recicladores, permitiéndote vender tus materiales
             reciclables para obtener ingresos extra o donarlos a quienes los necesiten, contribuyendo al medio ambiente.
           </p>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -209,7 +209,7 @@ export default function RecypaidLanding() {
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-app-highlight">Nuestro impacto social</h2>
           <p className="text-lg text-center mb-12 text-app-muted">
-            Recypaid contribuye directamente a los Objetivos de Desarrollo Sostenible de la ONU
+            Ciclo contribuye directamente a los Objetivos de Desarrollo Sostenible de la ONU
           </p>
           <div className="grid gap-8 md:grid-cols-3">
             <Card className="border-0 shadow-sm bg-app-tint">
@@ -250,7 +250,7 @@ export default function RecypaidLanding() {
             Disponible en App Store y Google Play
           </h2>
           <p className="text-lg mb-12 text-app-muted">
-            Descarga Recypaid y comienza a generar ingresos o ayudar a tu comunidad
+            Descarga Ciclo y comienza a generar ingresos o ayudar a tu comunidad
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Button
@@ -298,7 +298,7 @@ export default function RecypaidLanding() {
               <div className="flex items-center mb-4">
                 <Logo width={25} height={25}/>
                 {/* <Recycle className="w-8 h-8 mr-2 text-app-primary" /> */}
-                <span className="text-2xl font-bold text-app-tint ml-2">Recypaid</span>
+                <span className="text-2xl font-bold text-app-tint ml-2">Ciclo</span>
               </div>
               <p className="text-app-text">
                 Conectando hogares con oportunidades de reciclaje para un futuro más sostenible y próspero
@@ -325,10 +325,10 @@ export default function RecypaidLanding() {
             <div>
               <h3 className="text-lg font-semibold mb-4 text-app-tint">Síguenos</h3>
               <div className="flex space-x-4">
-                <Link href="https://www.facebook.com/people/Recypaid/61563588954013/" className="hover:opacity-80">
+                <Link href="https://www.facebook.com/people/Ciclo/61563588954013/" className="hover:opacity-80">
                   <Facebook className="w-6 h-6 text-app-icon" />
                 </Link>
-                <Link href="https://www.instagram.com/recypaid/" className="hover:opacity-80">
+                <Link href="https://www.instagram.com/Ciclo/" className="hover:opacity-80">
                   <Instagram className="w-6 h-6 text-app-icon" />
                 </Link> 
               </div>
@@ -336,7 +336,7 @@ export default function RecypaidLanding() {
           </div>
           <div className="border-t mt-8 pt-8 border-app-muted">
             <p className="text-center text-app-icon">
-              © {new Date().getFullYear()} Recypaid. Todos los derechos reservados.
+              © {new Date().getFullYear()} Ciclo. Todos los derechos reservados.
             </p>
           </div>
         </div>

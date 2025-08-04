@@ -40,7 +40,6 @@ export async function verifyCode(email: string, code: string): Promise<ActionRes
         const e = error as Error;
         return errorAction(e.message);
     }
-
 }
 
 export async function resetPassword(email: string, code: string, newPassword: string): Promise<ActionResponse> {
