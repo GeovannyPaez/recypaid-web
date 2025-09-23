@@ -18,6 +18,8 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import DownloadButton from "@/components/download-button"
+import { APP_STORE_URLS } from "@/constants/app-urls"
 
 export default function CicloLanding() {
   return (
@@ -33,19 +35,13 @@ export default function CicloLanding() {
               <p className="text-xl md:text-2xl text-app-muted">
                 Monetiza o dona tus materiales reciclables mientras cuidas el planeta
               </p>
-              <Button
-                size="lg"
-                className="text-lg px-8 py-6 rounded-full font-semibold bg-app-primary text-app-tint hover:opacity-90 border-none"
-              >
-                <Download className="mr-2 h-5 w-5" />
-                Descárgala ahora
-              </Button>
+              <DownloadButton />
             </div>
             <div className="flex justify-center">
               <div className="relative">
                 <div className="w-80 h-80 rounded-full flex items-center justify-center bg-app-tint">
                   {/* <Recycle className="w-32 h-32 text-app-primary" /> */}
-                  <Logo width={100} height={100}/>
+                  <Logo width={100} height={100} />
                 </div>
                 <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full flex items-center justify-center bg-app-secondary">
                   <DollarSign className="w-8 h-8 text-app-tint" />
@@ -65,7 +61,7 @@ export default function CicloLanding() {
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-app-highlight">¿De qué va?</h2>
           <p className="text-lg md:text-xl mb-12 leading-relaxed text-app-muted">
             Ciclo es una plataforma móvil que conecta hogares con recicladores, permitiéndote vender tus materiales
-            reciclables para obtener ingresos extra o donarlos a quienes los necesiten, contribuyendo al medio ambiente.
+            reciclables para obtener ingresos extra o donarlos a quienes los necesiten, contribuyendo al medio ambiente y apoyando la economía circular.
           </p>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             <Card className="border-0 shadow-sm bg-app-bg">
@@ -256,6 +252,7 @@ export default function CicloLanding() {
             <Button
               size="lg"
               className="px-8 py-6 rounded-xl font-semibold bg-app-highlight text-app-tint hover:opacity-90 border-none"
+              title="Muy Pronto"
             >
               <Image
                 src="/app-store.png"
@@ -266,27 +263,24 @@ export default function CicloLanding() {
               />
               Descargar para iOS
             </Button>
-            <Button
-              size="lg"
-              className="px-8 py-6 rounded-xl font-semibold bg-app-secondary text-app-tint hover:opacity-90 border-none"
-            >
-              <Image
-                src="/google-play.png"
-                alt="Google Play"
-                width={24}
-                height={24}
-                className="mr-3"
-              />
-              Descargar para Android
-            </Button>
+            <Link href={APP_STORE_URLS.ANDROID}>
+              <Button
+                size="lg"
+                title="Descargar"
+                className="px-8 py-6 rounded-xl font-semibold bg-app-secondary text-app-tint hover:opacity-90 border-none"
+              >
+                <Image
+                  src="/google-play.png"
+                  alt="Google Play"
+                  width={24}
+                  height={24}
+                  className="mr-3"
+                />
+                Descargar para Android
+              </Button>
+            </Link>
           </div>
-          <Button
-            size="lg"
-            className="text-lg px-8 py-6 rounded-full font-semibold bg-app-primary text-app-tint hover:opacity-90 border-none"
-          >
-            <Download className="mr-2 h-5 w-5" />
-            Descárgala ahora
-          </Button>
+          <DownloadButton />
         </div>
       </section>
 
@@ -296,7 +290,7 @@ export default function CicloLanding() {
           <div className="grid gap-8 md:grid-cols-3">
             <div>
               <div className="flex items-center mb-4">
-                <Logo width={25} height={25}/>
+                <Logo width={25} height={25} />
                 {/* <Recycle className="w-8 h-8 mr-2 text-app-primary" /> */}
                 <span className="text-2xl font-bold text-app-tint ml-2">Ciclo</span>
               </div>
@@ -314,10 +308,10 @@ export default function CicloLanding() {
                   Contacto
                 </Link>
                 <Link href="/legal/privacy_policy" className="block hover:underline text-app-text" prefetch={false}>
-                        Política de privacidad
+                  Política de privacidad
                 </Link>
                 <Link href="/legal/terms_conditions" className="block hover:underline text-app-text" prefetch={false}>
-                    Términos de servicio
+                  Términos de servicio
                 </Link>
 
               </div>
@@ -330,7 +324,7 @@ export default function CicloLanding() {
                 </Link>
                 <Link href="https://www.instagram.com/Ciclo/" className="hover:opacity-80">
                   <Instagram className="w-6 h-6 text-app-icon" />
-                </Link> 
+                </Link>
               </div>
             </div>
           </div>
@@ -341,6 +335,6 @@ export default function CicloLanding() {
           </div>
         </div>
       </footer>
-      </>
+    </>
   )
 }
