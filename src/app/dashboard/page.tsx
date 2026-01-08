@@ -5,7 +5,7 @@ import UserBasicStatistics from "@/components/shared/user-basic-statistics"
 import Footer from "@/components/shared/footer"
 import { GetServerSession } from "@/services/server/AuthService"
 import { redirect } from "next/navigation"
-import { Role } from "@/config/routes"
+import { Role } from "@/core/config/routes"
 import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -17,7 +17,7 @@ export default async function UserHomePage() {
   }
   return (
     <>
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-secondary">
+      <section className="w-full py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6 flex flex-col items-center text-center">
           <WelcomeBackUser />
           <p className="max-w-[700px] text-muted-foreground md:text-xl mt-4">

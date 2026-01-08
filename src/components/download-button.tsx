@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
 import { useEffect, useState } from "react"
-import { APP_STORE_URLS } from "@/constants/app-urls"
+import { APP_STORE_URLS } from "@/core/constants/app-urls"
 
 export default function DownloadButton() {
   const [deviceType, setDeviceType] = useState<'ios' | 'android' | 'desktop'>('desktop')

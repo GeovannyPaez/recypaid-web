@@ -2,7 +2,7 @@ import { LoginService, ValidateOauthGoogleToken } from "@/services/server/AuthSe
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { API_URL } from "@/config";
+import { API_URL } from "@/core/config";
 
 const EIGHT_HOURS = 60 * 60 * 8;
 

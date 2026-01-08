@@ -1,4 +1,4 @@
-import { Role } from "@/config/routes";
+import { Role } from "@/core/config/routes";
 
 
 export type User = {
@@ -6,7 +6,8 @@ export type User = {
     email: string;
     isEmailVerified: boolean;
     token: string;
-    role: Role;
+    role: Role; // Para compatibilidad con versión anterior
+    roles?: Role[]; // Array de roles para múltiples funcionalidades (opcional)
 }
 
 

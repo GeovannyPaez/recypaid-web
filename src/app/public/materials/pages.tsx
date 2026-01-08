@@ -7,11 +7,11 @@ import AnimatedSection from '@/components/shared/animated-section';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Materiales Reciclables | Recypaid',
+    title: 'Materiales Reciclables | Ciclo',
     description: 'Conoce los materiales reciclables que puedes vender y reciclar con nosotros. Descubre precios, disponibilidad y más.',
     keywords: 'reciclaje, materiales reciclables, reciclaje de materiales, precios de reciclaje, disponibilidad de materiales',
     authors: [{
-        name: 'Recypaid',
+        name: 'Ciclo',
     }],
 };
 

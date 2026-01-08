@@ -27,7 +27,7 @@ export default function SendCodeForm({ email, isAppMobile }: SendCodeFormProps) 
   useEffect(() => {
     if (!error && message) {
       if (isAppMobile) {
-        window.location.href = `recypaid://auth`;
+        window.location.href = `Ciclo://auth`;
         return;
       }
       router.push("/auth/login");

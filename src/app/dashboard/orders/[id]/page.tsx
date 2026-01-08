@@ -1,5 +1,5 @@
 import OrderDetails from '@/components/dashboard/picker/orders/order-details'
-import { Role } from '@/config/routes'
+import { Role } from '@/core/config/routes'
 import React from 'react'
 
 type OrderDetailsPageProps = {

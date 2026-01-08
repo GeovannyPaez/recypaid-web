@@ -1,7 +1,7 @@
 "use client";
 import Map from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { MAPBOX_TOKEN } from "@/config/client";
+import { MAPBOX_TOKEN } from "@/core/config/client";
 import { OrdersWithLocations } from "@/types/orders";
 import { calculateInitialStateToMapBox } from "@/lib/map";
 import LocationMarker from "../dashboard/map/location-marker";

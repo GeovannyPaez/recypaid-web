@@ -1,7 +1,7 @@
 import React from 'react'
 import InfoCardHome from './info-card-home'
 import { DollarSignIcon, RecycleIcon, ClockIcon, XCircleIcon, ClipboardListIcon, CheckCircleIcon, UserIcon, CarIcon } from 'lucide-react'
-import { Role } from '@/config/routes'
+import { Role } from '@/core/config/routes'
 import StatisticsService from '@/services/server/StatisticsService'
 import { PickerStatistics } from '@/types/statistics'
 import OrdersService from '@/services/server/OrdersService'

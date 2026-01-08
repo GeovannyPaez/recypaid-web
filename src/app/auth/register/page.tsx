@@ -12,20 +12,20 @@ import { Separator } from "@/components/ui/separator";
 import ButtonGoogleAuth from "@/components/auth/button-google-auth";
 
 export const metadata: Metadata = {
-  title: "Regístrate en Recypaid | Únete al Reciclaje a Domicilio",
-  description: "Crea tu cuenta en Recypaid y comienza a reciclar desde casa. Únete a la comunidad de reciclaje más grande de Colombia y gana recompensas por tus esfuerzos.",
-  keywords: "registro, crear cuenta, Recypaid, reciclaje, domicilio, Colombia, recompensas",
+  title: "Regístrate en Ciclo | Únete al Reciclaje a Domicilio",
+  description: "Crea tu cuenta en Ciclo y comienza a reciclar desde casa. Únete a la comunidad de reciclaje más grande de Colombia y gana recompensas por tus esfuerzos.",
+  keywords: "registro, crear cuenta, Ciclo, reciclaje, domicilio, Colombia, recompensas",
   openGraph: {
-    title: "Únete a Recypaid - Reciclaje a Domicilio en Colombia",
-    description: "Regístrate en Recypaid y comienza tu viaje de reciclaje. Gana dinero mientras ayudas al planeta.",
-    url: "https://www.Recypaid.com/auth/register",
-    siteName: "Recypaid",
+    title: "Únete a Ciclo - Reciclaje a Domicilio en Colombia",
+    description: "Regístrate en Ciclo y comienza tu viaje de reciclaje. Gana dinero mientras ayudas al planeta.",
+    url: "https://www.Ciclo.com/auth/register",
+    siteName: "Ciclo",
     images: [
       // {
-      //   url: "https://www.Recypaid.com/register-og-image.jpg",
+      //   url: "https://www.Ciclo.com/register-og-image.jpg",
       //   width: 1200,
       //   height: 630,
-      //   alt: "Registro en Recypaid",
+      //   alt: "Registro en Ciclo",
       // },
     ],
     locale: "es_CO",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   // twitter: {
   //   card: "summary_large_image",
-  //   title: "Regístrate en Recypaid - Reciclaje a Domicilio",
-  //   description: "Crea tu cuenta en Recypaid y únete a la revolución del reciclaje en Colombia.",
-  //   images: ["https://www.Recypaid.com/register-twitter-image.jpg"],
+  //   title: "Regístrate en Ciclo - Reciclaje a Domicilio",
+  //   description: "Crea tu cuenta en Ciclo y únete a la revolución del reciclaje en Colombia.",
+  //   images: ["https://www.Ciclo.com/register-twitter-image.jpg"],
   // },
   robots: "noindex, nofollow", // Typically, registration pages are not indexed
 };

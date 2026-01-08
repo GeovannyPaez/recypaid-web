@@ -10,7 +10,7 @@ import OrderModalCompleteAction from './order-modal-complete-action';
 import { AcceptOrderAction, RejectOrderAction } from '@/actions/orders-actions';
 import ButtonHandleServerAction from '@/components/ui/button-handle-server-action';
 import MaterilasService from '@/services/server/MaterilasService';
-import { Role } from '@/config/routes';
+import { Role } from '@/core/config/routes';
 import { formatDate } from '@/lib/utils';
 
 type OrderDetailsPageProps = {

@@ -21,7 +21,7 @@ import { PaginationMetadata, SearchParamToNavigation } from "@/types/pagination"
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>;
-  pagination: PaginationMetadata;
+  pagination?: PaginationMetadata;
   allSearchsParams: string[];
 }
 
@@ -31,18 +31,6 @@ export function DataTablePagination<TData>({
   allSearchsParams
 }: DataTablePaginationProps<TData>) {
   const { handleUpdateSearchParams, getValueToSearchParam } = useUpdateSearchParams({ searchParamsInPage: allSearchsParams });
-
-  const size = getValueToSearchParam("limit") || "10";
-
-  const {
-    nextPage,
-    backPage,
-    lastPage,
-    totalPages,
-    currentPage,
-    firstPage,
-    totalItems,
-  } = pagination;
 
   const handlePageChange = useCallback(
     (pageUrl: SearchParamToNavigation | null) => {
@@ -62,6 +50,21 @@ export function DataTablePagination<TData>({
     },
     [handleUpdateSearchParams]
   );
+  
+  const size = getValueToSearchParam("limit") || "10";
+  if (!pagination) {
+    return null;
+  }
+  const {
+    nextPage,
+    backPage,
+    lastPage,
+    totalPages,
+    currentPage,
+    firstPage,
+    totalItems,
+  } = pagination;
+
 
   return (
     <div className="flex items-center justify-between px-2">
@@ -85,7 +88,7 @@ export function DataTablePagination<TData>({
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
-              {[10, 20, 30, 40, 50, 100, 250, 10000].map((pageSize) => (
+              {[10, 20, 30, 40, 50, 100, 250, 1000].map((pageSize) => (
                 <SelectItem key={pageSize} value={`${pageSize}`}>
                   {pageSize}
                 </SelectItem>

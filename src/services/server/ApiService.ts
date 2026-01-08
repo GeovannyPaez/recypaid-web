@@ -1,43 +1,89 @@
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse, AxiosInstance} from "axios";
 import { GetServerSession } from "./AuthService";
-import api from "@/lib/api";
-import { ResponseError, ResponseErrorType } from "@/errors/ResponseError";
+import { BadRequestError, ConflictError, NotFoundError, UnauthorizedError, UnknownError } from "@/core/error/erros";
+import API from "@/lib/api";
 
-/**
- * Defines the parameters for making an API request.
- */
 export type RequestParams = {
-    method: 'get' | 'post' | 'put' | 'delete' | 'patch';
-    endpoint: string;
+    method?: 'get' | 'post' | 'put' | 'delete' | 'patch';
+    endpoint?: string;
     data?: any;
     searchParams?: Record<string, string | number | boolean>;
     defaultErrorResponse?: any;
     isPublic?: boolean;
-}
+};
 
-/**
- * ApiService class for handling API requests.
- */
 export class ApiService {
-    /**
-     * Creates an instance of ApiService.
-     * @param pathName - The base path for API endpoints.
-     */
-    constructor(protected readonly pathName: string) { }
+    constructor(
+        protected readonly pathName: string,
+        private token?: string,
+        private api:AxiosInstance = API
+    ) { }
 
-    /**
-     * Retrieves authentication headers for API requests.
-     * @returns An object containing the Authorization header with the user's token.
-     */
-    protected async authHeaders() {
-        const session = await GetServerSession();
-        return {
-            headers: {
-                "Authorization": `Bearer ${session.token}`
-            }
-        }
+    private getClientFriendlyMessage(message: string): string {
+
+    const errorMap: Record<string, string> = {
+        'should not be empty': 'es obligatorio',
+        'must be a string': 'debe ser un texto válido',
+        'must be a number': 'debe ser un número',
+        'must be a positive number': 'debe ser positivo',
+        'must not be less than 1': 'debe ser al menos 1',
+        'must be a Date instance': 'no es una fecha válida',
+        'must be a valid ISO 8601 date string': 'no tiene el formato de fecha correcto'
+    };
+
+    // Detecta si el error proviene de un campo dentro de un array (ej: detallesPedido.0.productoId)
+    const arrayFieldMatch = message.match(/^(\w+)\.(\d+)\.(\w+)/);
+    if (arrayFieldMatch) {
+        const [, , , subField] = arrayFieldMatch;
+        const readableField = subField;
+        const matchedError = Object.entries(errorMap).find(([key]) => message.includes(key));
+        const readableError = matchedError ? matchedError[1] : 'tiene un error';
+        return `${readableField} ${readableError}`;
     }
 
+    // Detecta campos simples (ej: idCliente should not be empty)
+    const fieldMatch = message.match(/^(\w+)/);
+    if (fieldMatch) {
+        const field = fieldMatch[1];
+        const readableField =  field;
+        const matchedError = Object.entries(errorMap).find(([key]) => message.includes(key));
+        const readableError = matchedError ? matchedError[1] : 'tiene un error';
+        return `${readableField} ${readableError}`;
+    }
+
+    return 'Error de validación desconocido';
+}
+
+private simplifyErrors(messages: string[] | string): string {
+    if (Array.isArray(messages)) {
+        const processedErrors = messages.map(msg => this.getClientFriendlyMessage(msg));
+        const uniqueErrors = Array.from(new Set(processedErrors)).slice(0, 12);
+
+        let result = "Revise los siguientes datos:\n";
+        result += uniqueErrors.map(err => `• ${err}`).join('\n');
+
+        if (processedErrors.length > 3) {
+            result += `\n• Complete los ${processedErrors.length} campos requeridos`;
+        }
+
+        return result;
+    }
+
+    return messages;
+}
+
+
+    protected async authHeaders() {
+        if (!this.token) {
+            this.token = await GetServerSession().then(session => session?.token);
+        }
+        return {
+            headers: {
+                "Authorization": `Bearer ${this.token}`
+            }
+        };
+    }
+    
     /**
      * Makes an API request with the given parameters.
      * @param endpoint - The API endpoint to request.
@@ -49,11 +95,11 @@ export class ApiService {
      * @returns A Promise that resolves with the response data.
      * @throws {ResponseError} If an error occurs during the request.
      */
-    protected async makeRequest<T>({ endpoint, method, data, searchParams, defaultErrorResponse, isPublic }: RequestParams): Promise<T> {
+    protected async makeRequest<T>(request?: RequestParams): Promise<T> {
+        const { method = 'get', endpoint = '', data = {}, searchParams, defaultErrorResponse, isPublic } = request || {};
         try {
             const headers = isPublic ? {} : await this.authHeaders();
             let url = `${this.pathName}${endpoint}`;
-
             // Add search params to the URL if provided
             if (searchParams) {
                 const searchParamsString = new URLSearchParams(
@@ -67,14 +113,14 @@ export class ApiService {
                 ...(method === 'get' || method === 'delete' ? { params: data } : {})
             };
 
-            const response: AxiosResponse<T> = await api[method](
+            const response: AxiosResponse<T> = await this.api[method](
                 url,
                 method === 'get' || method === 'delete' ? config : data,
                 method === 'post' || method === 'put' || method === "patch" ? config : undefined
             );
             return response.data;
         } catch (error) {
-            console.log(error);
+            console.log('errod: ', error)
             if (defaultErrorResponse) {
                 return defaultErrorResponse;
             }
@@ -83,26 +129,30 @@ export class ApiService {
         }
     }
 
-    /**
-     * Handles errors that occur during API requests.
-     * @param error - The error object to handle.
-     * @throws {ResponseError} With appropriate error type and message.
-     */
-    protected handlerError(error: any) {
+    protected handlerError(error: unknown) {
         if (error instanceof AxiosError) {
-            if (error.response?.status === 401) {
-                throw new ResponseError("Unauthorized", ResponseErrorType.UNAUTHORIZED)
+            const response = error.response;
+            console.error('ResponseError: ', response)
+            
+            if (!response) {
+                throw new UnknownError("Problema de conexión con el servidor");
             }
-            if (error.response?.status === 404) {
-                throw new ResponseError(error.response.data.message, ResponseErrorType.NOT_FOUND)
-            }
-            if (error.response?.status === 409) {
-                throw new ResponseError(error.response.data.message, ResponseErrorType.CONFLICT)
-            }
-            if (error.response?.status === 400) {
-                throw new ResponseError(error.response.data.message, ResponseErrorType.BAD_REQUEST)
+
+            switch (response.status) {
+                case 400:
+                    const errorMessage = this.simplifyErrors(response.data?.message || response.data);
+                    throw new BadRequestError(errorMessage);
+                case 401:
+                    throw new UnauthorizedError(response.data?.message || "Acceso no autorizado");
+                case 404:
+                    throw new NotFoundError(response.data?.message || "No se encontró lo solicitado");
+                case 409:
+                    throw new ConflictError(response.data?.message || "Datos en conflicto");
+                default:
+                    throw new UnknownError(response.data?.message || "Error en el servidor");
             }
         }
-        throw new ResponseError("Error in request");
+        
+        throw new UnknownError("Error inesperado");
     }
 }

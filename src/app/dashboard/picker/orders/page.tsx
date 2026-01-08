@@ -10,8 +10,8 @@ type OrdersTableProps = {
 }
 export default async function PickerOrdersPage({ searchParams }: OrdersTableProps) {
   return (
-    <div className="container p-0 space-y-3 overflow-hidden">
-      <div className="flex items-center gap-2 flex-wrap justify-between  ">
+      <div>
+        <div className="flex items-center gap-2 flex-wrap justify-between  ">
         <h1 className="text-3xl font-bold">Pedidos de Reciclaje</h1>
         <div className="flex gap-2 items-center">
           <GoToOrdersLocationsMap />
@@ -21,6 +21,6 @@ export default async function PickerOrdersPage({ searchParams }: OrdersTableProp
       <Suspense fallback={<SkeletonTable rows={5} columns={4} />}>
         <OrdersTable paginationParams={searchParams} />
       </Suspense>
-    </div>
+      </div>
   );
 }

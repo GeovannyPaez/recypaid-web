@@ -6,22 +6,22 @@ import ButtonGoogleAuth from "@/components/auth/button-google-auth";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-  title: "Iniciar Sesión | Recypaid - Reciclaje a Domicilio",
-  description: "Accede a tu cuenta de Recypaid para gestionar tus servicios de reciclaje a domicilio y ver tus recompensas.",
-  keywords: "login, iniciar sesión, Recypaid, reciclaje, domicilio, Colombia",
+  title: "Iniciar Sesión | Ciclo - Reciclaje a Domicilio",
+  description: "Accede a tu cuenta de Ciclo para gestionar tus servicios de reciclaje a domicilio y ver tus recompensas.",
+  keywords: "login, iniciar sesión, Ciclo, reciclaje, domicilio, Colombia",
   openGraph: {
-    title: "Iniciar Sesión en Recypaid",
-    description: "Accede a tu cuenta de Recypaid y comienza a reciclar desde casa.",
-    url: "https://www.Recypaid.com/auth/login",
-    siteName: "Recypaid",
+    title: "Iniciar Sesión en Ciclo",
+    description: "Accede a tu cuenta de Ciclo y comienza a reciclar desde casa.",
+    url: "https://www.Ciclo.com/auth/login",
+    siteName: "Ciclo",
     locale: "es_CO",
     type: "website",
   },
   // twitter: {
   //   card: "summary_large_image",
-  //   title: "Iniciar Sesión en Recypaid - Reciclaje a Domicilio",
-  //   description: "Accede a tu cuenta de Recypaid y gestiona tus servicios de reciclaje.",
-  //   images: ["https://www.Recypaid.com/login-twitter-image.jpg"],
+  //   title: "Iniciar Sesión en Ciclo - Reciclaje a Domicilio",
+  //   description: "Accede a tu cuenta de Ciclo y gestiona tus servicios de reciclaje.",
+  //   images: ["https://www.Ciclo.com/login-twitter-image.jpg"],
   // },
   robots: "noindex, nofollow", // Typically, login pages are not indexed
 };

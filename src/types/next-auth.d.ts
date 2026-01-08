@@ -1,14 +1,15 @@
 import "next-auth";
 
 declare module "next-auth" {
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
     interface Session {
         user: {
             id: string;
             email: string;
             isEmailVerified: boolean;
             token: string;
-            role: Role;
+            role: Role; // Para compatibilidad con versión anterior
+            roles?: Role[]; // Array de roles para múltiples funcionalidades (opcional)
         }
     }
     interface User {
@@ -16,6 +17,7 @@ declare module "next-auth" {
         email: string;
         isEmailVerified: boolean;
         token: string;
-        role: Role;
+        role: Role; // Para compatibilidad con versión anterior
+        roles?: Role[]; // Array de roles para múltiples funcionalidades (opcional)
     }
 }

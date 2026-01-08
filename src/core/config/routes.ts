@@ -1,7 +1,10 @@
 export enum Role {
-    ADMIM = 'ADMIN',
+    ADMIN = 'ADMIN',
     USER = 'USER',
-    PICKER = 'PICKER'
+    PICKER = 'PICKER',
+    ORGANIZACION = 'ORGANIZACION',
+    MODERADOR = 'MODERADOR',
+    SOPORTE = 'SOPORTE'
 }
 export type Route = {
     path: string;

@@ -17,7 +17,7 @@ export default function LayaoutAuth({ children }: LayaoutAuthProps) {
                 >
                     <Logo width={45} height={45} /></Link>
                 <h1>
-                    Recypaid
+                    Ciclo
                 </h1>
             </header>
             <Separator />

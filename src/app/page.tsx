@@ -19,13 +19,13 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import DownloadButton from "@/components/download-button"
-import { APP_STORE_URLS } from "@/constants/app-urls"
+import { APP_STORE_URLS } from "@/core/constants/app-urls"
 
 export default function CicloLanding() {
   return (
     <>
       {/* Hero Section */}
-      <section className="px-4 py-16 md:py-24 lg:py-32">
+      <section className="px-4 py-16 md:py-24 lg:py-32 bg-app-bg">
         <div className="container mx-auto max-w-6xl">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
             <div className="space-y-6 text-center lg:text-left">
@@ -93,7 +93,7 @@ export default function CicloLanding() {
       </section>
 
       {/* Cómo funciona Section */}
-      <section className="px-4 py-16">
+      <section className="px-4 py-16 bg-app-bg">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-app-highlight">Cómo funciona</h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -201,7 +201,7 @@ export default function CicloLanding() {
       </section>
 
       {/* Objetivos ODS Section */}
-      <section className="px-4 py-16">
+      <section className="px-4 py-16 bg-app-bg">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-app-highlight">Nuestro impacto social</h2>
           <p className="text-lg text-center mb-12 text-app-muted">

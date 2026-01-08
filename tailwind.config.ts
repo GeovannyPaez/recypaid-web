@@ -56,7 +56,7 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Recypaid custom colors
+        // Ciclo custom colors
         "app-text": "#D1D5DB",
         "app-bg": "rgb(203 213 225)",
         "app-tint": "#f0f4f8",

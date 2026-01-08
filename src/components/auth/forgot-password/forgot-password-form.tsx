@@ -64,7 +64,7 @@ export default function ForgotPasswordForm({ isAppMobile = false }: ForgotPasswo
             toastActionResponse(result);
             if (!result.error) {
                 if (isAppMobile) {
-                    window.location.href = 'recypaid://auth';
+                    window.location.href = 'Ciclo://auth';
                     return;
                 }
                 router.push('/auth/login');
