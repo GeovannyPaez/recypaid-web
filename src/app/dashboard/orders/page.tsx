@@ -6,6 +6,8 @@ import OrdersService from '@/services/server/OrdersService';
 import MonthCard from '@/components/dashboard/orders/order-month-card';
 import { Button } from '@/components/ui/button';
 
+export const dynamic = 'force-dynamic';
+
 export default async function OrdersPage() {
   const { data: orders } = await OrdersService.findAll();
 

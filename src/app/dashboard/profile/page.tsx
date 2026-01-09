@@ -8,6 +8,8 @@ import ProfileService from "@/services/server/ProfileService";
 import { CreateUserProfileAction, UpdateUserProfileAction } from "@/actions/user-profile.action";
 import ProfileForm from "@/components/dashboard/profile/profile-form";
 
+export const dynamic = 'force-dynamic';
+
 export default async function ProfilePage() {
   const userProfile = await ProfileService.get();
 

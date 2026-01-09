@@ -1,6 +1,8 @@
 import VehicleTripBasicDetails from "@/components/dashboard/picker/vehicle-trips/vehicle-trip-basic-details"
 import VehicleTripsService from "@/services/server/VehicleTripsService";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Component() {
     const trips = [
         {

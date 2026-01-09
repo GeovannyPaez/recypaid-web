@@ -4,6 +4,8 @@ import MaterilasService from "@/services/server/MaterilasService";
 import ProfileService from "@/services/server/ProfileService";
 import { redirect } from "next/navigation";
 
+export const dynamic = 'force-dynamic';
+
 type RecyclingPageProps = {
   searchParams: {
     materialId?: string;

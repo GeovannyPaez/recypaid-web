@@ -2,10 +2,11 @@ import OrdersTable from "@/components/dashboard/picker/orders/orders_table"
 import Footer from "@/components/shared/footer"
 import SkeletonTable from "@/components/shared/skeletons/skeleton-table"
 import UserBasicStatisticsSkeleton from "@/components/shared/skeletons/user-basic-statistics-skeleton"
-import UserBasicStatistics from "@/components/shared/user-basic-statistics"
 import WelcomeBackUser from "@/components/shared/welcome-back-user"
 import { Role } from "@/core/config/routes"
 import { Suspense } from "react"
+
+export const dynamic = 'force-dynamic';
 
 export default function UserHomePage() {
     return (
