@@ -28,6 +28,7 @@ const nextAuthOptions: NextAuthOptions = {
                         email: user.email,
                         id: user.id,
                         role: user.role,
+                        roles: user.roles && user.roles.length > 0 ? user.roles : [user.role],
                         token: user.token,
                         isEmailVerified: user.isEmailVerified
                     };
@@ -58,6 +59,7 @@ const nextAuthOptions: NextAuthOptions = {
                     user.email = userDb.email;
                     user.id = userDb.id;
                     user.role = userDb.role;
+                    user.roles = userDb.roles && userDb.roles.length > 0 ? userDb.roles : [userDb.role];
                     user.token = userDb.token;
                     user.isEmailVerified = userDb.isEmailVerified;
                     return true;

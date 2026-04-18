@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CircleUser, Bell, User, HelpCircle, LogOut } from "lucide-react";
+import { CircleUser, Bell, HelpCircle, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -78,11 +78,9 @@ export default function Header() {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <Link href="/dashboard/profile" className="cursor-pointer">
-                <User className="mr-2 h-4 w-4" />
-                <span>Perfil</span>
-              </Link>
+            <DropdownMenuItem disabled>
+              <Smartphone className="mr-2 h-4 w-4" />
+              <span>Perfil solo en app mobile</span>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link

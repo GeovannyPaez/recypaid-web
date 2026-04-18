@@ -7,19 +7,45 @@ import { useMemo } from "react";
 export function useUserRoles() {
   const { data: session, status } = useSession();
 
+  const normalizeRole = (rawRole?: string): Role | null => {
+    if (!rawRole) return null;
+
+    const role = rawRole.toUpperCase().trim();
+
+    if (role === "ORGANIZATION" || role === "ORGANIZACION" || role.startsWith("ORGANIZATION_")) {
+      return Role.ORGANIZACION;
+    }
+    if (role === "MODERATOR" || role === "MODERADOR" || role.startsWith("MODERATOR_")) {
+      return Role.MODERADOR;
+    }
+    if (role === "SUPPORT" || role === "SOPORTE" || role.startsWith("SUPPORT_")) {
+      return Role.SOPORTE;
+    }
+    if (role === "ADMIN" || role.startsWith("ADMIN_")) {
+      return Role.ADMIN;
+    }
+    // Picker quedó como flujo legacy: se consolida como USER en dashboard único.
+    if (role === "PICKER" || role.startsWith("PICKER_")) {
+      return Role.USER;
+    }
+    if (role === "USER" || role === "USUARIO" || role.startsWith("USER_")) {
+      return Role.USER;
+    }
+
+    return null;
+  };
+
   const userRoles = useMemo(() => {
-    // Si existe el array roles, usarlo
-    if (session?.user?.roles && session.user.roles.length > 0) {
-      return session.user.roles;
-    }
+    const rawRoles = [
+      ...(session?.user?.roles || []),
+      session?.user?.role,
+    ].filter(Boolean) as string[];
 
-    // Si no, usar el role antiguo (convertirlo a array para compatibilidad)
-    if (session?.user?.role) {
-      return [session.user.role];
-    }
+    const normalizedRoles = rawRoles
+      .map((role) => normalizeRole(role))
+      .filter((role): role is Role => role !== null);
 
-    // Si no hay ninguno, retornar array vacío
-    return [];
+    return Array.from(new Set(normalizedRoles));
   }, [session]);
 
   const hasRole = (role: Role): boolean => {

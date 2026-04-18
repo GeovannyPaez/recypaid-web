@@ -10,6 +10,14 @@ export type User = {
     roles?: Role[]; // Array de roles para múltiples funcionalidades (opcional)
 }
 
+export type UserPublic = {
+    id: string;
+    email: string;
+    role: Role;
+    createdAt: string;
+    updatedAt: string;
+}
+
 
 export type ResetPasswordDto = {
     email: string;

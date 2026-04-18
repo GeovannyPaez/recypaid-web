@@ -1,4 +1,5 @@
 import "next-auth";
+import { Role } from "@/core/config/routes";
 
 declare module "next-auth" {
     // eslint-disable-next-line

@@ -2,9 +2,12 @@ export enum Role {
     ADMIN = 'ADMIN',
     USER = 'USER',
     PICKER = 'PICKER',
-    ORGANIZACION = 'ORGANIZACION',
-    MODERADOR = 'MODERADOR',
-    SOPORTE = 'SOPORTE'
+    ORGANIZATION = 'ORGANIZATION',
+    ORGANIZACION = 'ORGANIZATION',
+    MODERATOR = 'MODERATOR',
+    MODERADOR = 'MODERATOR',
+    SUPPORT = 'SUPPORT',
+    SOPORTE = 'SUPPORT'
 }
 export type Route = {
     path: string;
@@ -14,15 +17,20 @@ export type Route = {
 }
 
 export const DASHBOARD_ROUTES: Route[] = [
+    // Módulo USER web deshabilitado; flujo de usuario final se gestiona en app mobile.
     { path: '/dashboard', name: 'Home', role: [Role.USER] },
-    { path: '/dashboard/orders', name: 'Pedidos', role: [Role.USER] },
-    { path: '/dashboard/recycling', name: 'Reciclar', role: [Role.USER] },
-    { path: '/dashboard/recyclable-materials', name: 'Materiales Reciclables', role: [Role.USER] },
 ]
-export const PICKER_ROUTES: Route[] = [
-    { path: '/dashboard/picker', name: 'Home', role: [Role.PICKER] },
-    { path: '/dashboard/picker/orders', name: 'Pedidos', role: [Role.PICKER] },
-    { path: '/dashboard/picker/vehicle-trips', name: 'Viajes', role: [Role.PICKER] }
+
+export const ORGANIZATION_ROUTES: Route[] = [
+    { path: '/dashboard/organization', name: 'Organización', role: [Role.ORGANIZACION] },
+    { path: '/dashboard/organization/coverage', name: 'Cobertura', role: [Role.ORGANIZACION] },
+    { path: '/dashboard/organization/routes', name: 'Rutas', role: [Role.ORGANIZACION] },
+    { path: '/dashboard/organization/pickers', name: 'Recicladores', role: [Role.ORGANIZACION] },
+    { path: '/dashboard/organization/statistics', name: 'Estadísticas', role: [Role.ORGANIZACION] },
+]
+
+export const ADMIN_ROUTES: Route[] = [
+    { path: '/dashboard/admin/organizations', name: 'Organizaciones', role: [Role.ADMIN] },
 ]
 
 
