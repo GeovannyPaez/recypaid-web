@@ -42,18 +42,34 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild, isLoading = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
+  ({ className, variant, size, asChild, isLoading = false, children, ...props }, ref) => {
+    if (asChild) {
+      const child = React.Children.only(children) as React.ReactElement;
+      return (
+        <Slot className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props}>
+          {React.cloneElement(child, {
+            children: (
+              <>
+                {isLoading ? <LoaderCircle className="mr-2 h-4 w-4 animate-spin" /> : null}
+                {child.props.children}
+              </>
+            ),
+            "aria-disabled": isLoading || child.props["aria-disabled"],
+          })}
+        </Slot>
+      );
+    }
+
     return (
-      <Comp
-        disabled={isLoading}
+      <button
+        disabled={isLoading || props.disabled}
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       >
-        {isLoading && <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />}
-        {props.children}
-      </Comp>
+        {isLoading ? <LoaderCircle className="mr-2 h-4 w-4 animate-spin" /> : null}
+        {children}
+      </button>
     );
   }
 );

@@ -1,5 +1,5 @@
 import OrganizationService from "@/services/server/OrganizationService";
-import OrganizationRoutesManager from "@/components/dashboard/organization/routes/organization-routes-manager";
+import OrganizationRoutesList from "@/components/dashboard/organization/routes/organization-routes-list";
 
 type RoutesPageProps = {
   searchParams?: {
@@ -26,14 +26,12 @@ export default async function OrganizationRoutesPage({ searchParams }: RoutesPag
       ? searchParams.orgId
       : organizations[0].id;
 
-  const coveragePoints = await OrganizationService.getCoverage(selectedOrgId);
   const routes = await OrganizationService.getRoutes(selectedOrgId);
 
   return (
-    <OrganizationRoutesManager
+    <OrganizationRoutesList
       organizations={organizations}
       selectedOrgId={selectedOrgId}
-      coveragePoints={coveragePoints}
       routes={routes}
     />
   );
