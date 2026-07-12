@@ -25,12 +25,16 @@ export const ORGANIZATION_ROUTES: Route[] = [
     { path: '/dashboard/organization', name: 'Organización', role: [Role.ORGANIZACION] },
     { path: '/dashboard/organization/coverage', name: 'Cobertura', role: [Role.ORGANIZACION] },
     { path: '/dashboard/organization/routes', name: 'Rutas', role: [Role.ORGANIZACION] },
+    { path: '/dashboard/organization/orders', name: 'Solicitudes', role: [Role.ORGANIZACION] },
     { path: '/dashboard/organization/pickers', name: 'Recicladores', role: [Role.ORGANIZACION] },
+    { path: '/dashboard/organization/prices', name: 'Precios', role: [Role.ORGANIZACION] },
     { path: '/dashboard/organization/statistics', name: 'Estadísticas', role: [Role.ORGANIZACION] },
 ]
 
 export const ADMIN_ROUTES: Route[] = [
     { path: '/dashboard/admin/organizations', name: 'Organizaciones', role: [Role.ADMIN] },
+    { path: '/dashboard/admin/organizations/[id]/orders', name: 'Solicitudes organizacion', role: [Role.ADMIN] },
+    { path: '/dashboard/admin/organizations/[id]/prices', name: 'Precios organizacion', role: [Role.ADMIN] },
 ]
 
 

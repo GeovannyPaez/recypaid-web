@@ -6,6 +6,7 @@ import {
   Shield,
   MapPin,
   Users,
+  DollarSign,
 } from "lucide-react";
 import { Role } from "./routes";
 import { ModuleConfig } from "@/types/modules";
@@ -27,13 +28,6 @@ export const MODULES_CONFIG: ModuleConfig[] = [
         description: "Panel de organización",
       },
       {
-        id: "org-coverage",
-        title: "Cobertura",
-        href: "/dashboard/organization/coverage",
-        icon: MapPin,
-        description: "Gestiona zonas/coberturas de la organización",
-      },
-      {
         id: "org-routes",
         title: "Rutas",
         href: "/dashboard/organization/routes",
@@ -41,11 +35,25 @@ export const MODULES_CONFIG: ModuleConfig[] = [
         description: "Crea y administra rutas programadas",
       },
       {
+        id: "org-orders",
+        title: "Solicitudes",
+        href: "/dashboard/organization/orders",
+        icon: ClipboardList,
+        description: "Consulta solicitudes, estados, rutas y responsables",
+      },
+      {
         id: "org-pickers",
         title: "Recicladores",
         href: "/dashboard/organization/pickers",
         icon: Users,
         description: "Vincula recicladores registrados en app mobile",
+      },
+      {
+        id: "org-prices",
+        title: "Precios",
+        href: "/dashboard/organization/prices",
+        icon: DollarSign,
+        description: "Configura precios de compra por material",
       },
       {
         id: "org-statistics",

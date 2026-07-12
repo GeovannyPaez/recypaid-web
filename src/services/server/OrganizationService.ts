@@ -12,11 +12,19 @@ import {
   OrganizationStatus,
   OrganizationRouteStop,
   UpdateOrganizationCoverageDto,
+  CreateOrganizationMaterialPriceDto,
+  OrganizationMaterialPrice,
+  OrganizationMaterialPriceCatalog,
+  UpdateOrganizationMaterialPriceDto,
   UpdateOrganizationRouteDto,
   UpdateRouteStopDto,
   UpdateOrganizationStatusDto,
+  UpdateOrganizationDto,
+  OrganizationOrderListItem,
+  OrganizationOrderStatus,
 } from "@/types/organization";
 import { ApiService } from "./ApiService";
+import { PaginationResponse, PaginationSearchParamsPage } from "@/types/pagination";
 
 class OrganizationService extends ApiService {
   private constructor(readonly pathName: string) {
@@ -44,6 +52,87 @@ class OrganizationService extends ApiService {
     return this.makeRequest({
       method: "post",
       endpoint: "",
+      data: payload,
+    });
+  }
+
+  async getOrganizationById(organizationId: string): Promise<Organization> {
+    return this.makeRequest({
+      method: "get",
+      endpoint: `/${organizationId}`,
+    });
+  }
+
+  async updateOrganization(
+    organizationId: string,
+    payload: UpdateOrganizationDto,
+  ): Promise<Organization> {
+    return this.makeRequest({
+      method: "patch",
+      endpoint: `/${organizationId}`,
+      data: payload,
+    });
+  }
+
+  async getMaterialPrices(
+    organizationId: string,
+  ): Promise<OrganizationMaterialPriceCatalog> {
+    return this.makeRequest({
+      method: "get",
+      endpoint: `/${organizationId}/material-prices`,
+      defaultErrorResponse: {
+        prices: [],
+        materialsWithoutActivePrice: [],
+      },
+    });
+  }
+
+  async getOrders(
+    organizationId: string,
+    query?: PaginationSearchParamsPage & { status?: OrganizationOrderStatus },
+  ): Promise<PaginationResponse<OrganizationOrderListItem[]>> {
+    return this.makeRequest({
+      method: "get",
+      endpoint: `/${organizationId}/orders`,
+      searchParams: {
+        ...(query?.limit ? { limit: query.limit } : {}),
+        ...(query?.offset ? { offset: query.offset } : {}),
+        ...(query?.status ? { status: query.status } : {}),
+      },
+      defaultErrorResponse: {
+        data: [],
+        meta: {
+          nextPage: null,
+          backPage: null,
+          totalItems: 0,
+          totalPages: 0,
+          lastPage: null,
+          currentPage: 1,
+          firstPage: { limit: Number(query?.limit || 20), offset: 0 },
+        },
+      },
+    });
+  }
+
+  async createMaterialPrice(
+    organizationId: string,
+    payload: CreateOrganizationMaterialPriceDto,
+  ): Promise<OrganizationMaterialPrice> {
+    return this.makeRequest({
+      method: "post",
+      endpoint: `/${organizationId}/material-prices`,
+      data: payload,
+    });
+  }
+
+  async updateMaterialPrice(
+    organizationId: string,
+    priceId: string,
+    payload: UpdateOrganizationMaterialPriceDto,
+  ): Promise<OrganizationMaterialPrice> {
+    return this.makeRequest({
+      method: "patch",
+      endpoint: `/${organizationId}/material-prices/${priceId}`,
       data: payload,
     });
   }

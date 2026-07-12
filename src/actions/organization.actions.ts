@@ -12,11 +12,15 @@ import {
   OrganizationAvailablePicker,
   Organization,
   OrganizationCoverage,
+  CreateOrganizationMaterialPriceDto,
+  OrganizationMaterialPrice,
   OrganizationPickerMember,
   OrganizationRoute,
   OrganizationStatus,
   UpdateOrganizationCoverageDto,
   UpdateOrganizationRouteDto,
+  UpdateOrganizationDto,
+  UpdateOrganizationMaterialPriceDto,
 } from "@/types/organization";
 import { revalidatePath } from "next/cache";
 
@@ -34,6 +38,10 @@ type OrganizationCrudActionResponse = ActionResponse & {
 
 type OrganizationPickerCrudActionResponse = ActionResponse & {
   picker?: OrganizationPickerMember;
+};
+
+type OrganizationMaterialPriceCrudActionResponse = ActionResponse & {
+  price?: OrganizationMaterialPrice;
 };
 
 type OrganizationAvailablePickerActionResponse = ActionResponse & {
@@ -199,6 +207,67 @@ export const CreateOrganizationAsAdminAction = async (
     ...successAction("Organización creada y rol ORGANIZATION asignado"),
     organization,
   };
+};
+
+export const UpdateOrganizationAsAdminAction = async (
+  organizationId: string,
+  payload: UpdateOrganizationDto,
+): Promise<OrganizationCrudActionResponse> => {
+  let organization: Organization;
+  try {
+    organization = await OrganizationService.updateOrganization(organizationId, payload);
+  } catch (error) {
+    const err = error as Error;
+    return errorAction(err.message);
+  }
+
+  revalidatePath("/dashboard/admin/organizations");
+  revalidatePath(getPathNameFromHeaders());
+  return {
+    ...successAction("Organización actualizada"),
+    organization,
+  };
+};
+
+export const CreateOrganizationMaterialPriceAction = async (
+  organizationId: string,
+  payload: CreateOrganizationMaterialPriceDto,
+): Promise<OrganizationMaterialPriceCrudActionResponse> => {
+  let price: OrganizationMaterialPrice;
+  try {
+    price = await OrganizationService.createMaterialPrice(organizationId, payload);
+  } catch (error) {
+    const err = error as Error;
+    return errorAction(err.message);
+  }
+
+  revalidatePath("/dashboard/organization/prices");
+  revalidatePath("/dashboard/admin/organizations");
+  revalidatePath(getPathNameFromHeaders());
+  return { ...successAction("Precio configurado correctamente"), price };
+};
+
+export const UpdateOrganizationMaterialPriceAction = async (
+  organizationId: string,
+  priceId: string,
+  payload: UpdateOrganizationMaterialPriceDto,
+): Promise<OrganizationMaterialPriceCrudActionResponse> => {
+  let price: OrganizationMaterialPrice;
+  try {
+    price = await OrganizationService.updateMaterialPrice(
+      organizationId,
+      priceId,
+      payload,
+    );
+  } catch (error) {
+    const err = error as Error;
+    return errorAction(err.message);
+  }
+
+  revalidatePath("/dashboard/organization/prices");
+  revalidatePath("/dashboard/admin/organizations");
+  revalidatePath(getPathNameFromHeaders());
+  return { ...successAction("Precio actualizado"), price };
 };
 
 export const CreateRouteAction = async (

@@ -27,7 +27,14 @@ export interface LocationDto {
     longitude: number;
 }
 
-export type OrderStatus = "PENDING" | "ACCEPTED" | "REJECTED" | "COMPLETED";
+export type OrderStatus =
+    | "PENDING"
+    | "ACCEPTED"
+    | "REJECTED"
+    | "COMPLETED"
+    | "CANCELED"
+    | "PICKER_ARRIVED"
+    | "USER_ON_WAY";
 
 
 

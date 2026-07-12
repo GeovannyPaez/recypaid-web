@@ -1,10 +1,25 @@
 export type OrganizationStatus = "PENDING" | "ACTIVE" | "SUSPENDED" | "INACTIVE";
 export type OrganizationType = "ECA" | "COOPERATIVE" | "ENTERPRISE" | "NGO";
 export type EmploymentType = "EMPLOYEE" | "CONTRACT" | "COOPERATIVE" | "VOLUNTEER";
+export type OrganizationMaterialPriceBy = "UNIT" | "KILO";
+export type OrganizationOrderStatus =
+  | "PENDING"
+  | "CANCELED"
+  | "ACCEPTED"
+  | "REJECTED"
+  | "COMPLETED"
+  | "PICKER_ARRIVED"
+  | "USER_ON_WAY";
+export type OrganizationOrderType = "SALE" | "DONATION";
 
 export type Organization = {
   id: string;
   profileId: string;
+  locationId: string;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
   businessName: string;
   taxId?: string | null;
   status: OrganizationStatus;
@@ -72,6 +87,71 @@ export type OrganizationAvailablePicker = {
   createdAt: string;
   updatedAt: string;
   profile?: OrganizationPickerBaseProfile | null;
+};
+
+export type OrganizationMaterialPriceMaterial = {
+  id: string;
+  name: string;
+  description?: string | null;
+  priceBy: OrganizationMaterialPriceBy;
+  isAvailable: boolean;
+  icon?: string | null;
+  type?: string;
+  code?: string | null;
+};
+
+export type OrganizationMaterialPrice = {
+  id: string;
+  organizationId: string;
+  materialId: string;
+  technicalMaterialId?: string;
+  buyPrice: number;
+  sellPrice?: number | null;
+  priceBy: OrganizationMaterialPriceBy;
+  isActive: boolean;
+  validFrom: string;
+  validUntil?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  material: OrganizationMaterialPriceMaterial;
+};
+
+export type OrganizationMaterialPriceCatalog = {
+  prices: OrganizationMaterialPrice[];
+  materialsWithoutActivePrice: OrganizationMaterialPriceMaterial[];
+};
+
+export type OrganizationOrderListItem = {
+  id: string;
+  address?: string | null;
+  total: number;
+  status: OrganizationOrderStatus;
+  orderType: OrganizationOrderType;
+  createdAt: string;
+  updatedAt: string;
+  user: {
+    name: string;
+    phone?: string | null;
+  };
+  route?: {
+    id: string;
+    name: string;
+    status: string;
+  } | null;
+  picker?: {
+    id?: string;
+    name: string;
+    phone?: string | null;
+  } | null;
+  completedBy?: {
+    id?: string;
+    name: string;
+    phone?: string | null;
+  } | null;
+  materials: Array<{
+    name: string;
+    quantity: number;
+  }>;
 };
 
 export type OrganizationRoute = {
@@ -159,6 +239,15 @@ export type AssignOrganizationPickerDto = {
   canDoPrivateRoutes?: boolean;
 };
 
+export type CreateOrganizationMaterialPriceDto = {
+  materialId: string;
+  priceBy: OrganizationMaterialPriceBy;
+  buyPrice: number;
+  isActive?: boolean;
+};
+
+export type UpdateOrganizationMaterialPriceDto = Partial<CreateOrganizationMaterialPriceDto>;
+
 export type UpdateOrganizationRouteDto = {
   name?: string;
   startTime?: string;
@@ -195,4 +284,15 @@ export type CreateOrganizationDto = {
   canManageRoutes?: boolean;
   latitude: number;
   longitude: number;
+};
+
+export type UpdateOrganizationDto = {
+  businessName?: string;
+  taxId?: string | null;
+  status?: OrganizationStatus;
+  organizationType?: OrganizationType;
+  canBuyMaterials?: boolean;
+  canManageRoutes?: boolean;
+  latitude?: number;
+  longitude?: number;
 };

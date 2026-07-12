@@ -3,10 +3,13 @@ export interface Material {
     name: string
     description: string
     price: number
-    priceBy: PriceBymaterial
+    priceBy: PriceByMaterial
     isAvailable: boolean
     createdAt: Date
     updatedAt: Date
+    icon?: string | null
+    type?: string
+    code?: string | null
 }
 
 export type PriceByMaterial = "UNIT" | "KILO"
