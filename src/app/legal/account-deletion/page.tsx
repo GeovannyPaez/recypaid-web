@@ -1,286 +1,200 @@
+import type { Metadata } from "next"
+import Link from "next/link"
+import { AlertTriangle, Clock, Database, Mail, Shield, Trash2 } from "lucide-react"
+
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
-import { Badge } from "@/components/ui/badge"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Trash2, Shield, Clock, Database, Mail, Phone, User, AlertTriangle } from "lucide-react"
 
-export default function Component() {
+const supportEmail = "soporte@cicloapp.com"
+const deletionSubject = encodeURIComponent("Solicitud de eliminacion de cuenta Ciclo")
+const deletionBody = encodeURIComponent(
+  [
+    "Hola, quiero solicitar la eliminacion de mi cuenta de Ciclo.",
+    "",
+    "Correo registrado:",
+    "Nombre completo:",
+    "Telefono registrado, si aplica:",
+    "Motivo de la solicitud:",
+    "",
+    "Confirmo que entiendo que la eliminacion de la cuenta y los datos asociados puede ser irreversible.",
+  ].join("\n"),
+)
+
+export const metadata: Metadata = {
+  title: "Eliminacion de cuenta - Ciclo",
+  description:
+    "Pagina oficial para solicitar la eliminacion de una cuenta de Ciclo y los datos asociados.",
+}
+
+export default function AccountDeletionPage() {
+  const mailtoHref = `mailto:${supportEmail}?subject=${deletionSubject}&body=${deletionBody}`
+
   return (
-    <div className="min-h-screen bg-background py-8">
+    <main className="min-h-screen bg-background py-8">
       <div className="container mx-auto max-w-4xl px-4">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">Eliminación de Cuenta - Ciclo</h1>
-          <p className="text-muted-foreground">Desarrollado por Geovanny Paez</p>
-          <Badge variant="secondary" className="mt-2">
-            Aplicación de Reciclaje
+        <div className="mb-8 text-center">
+          <h1 className="mb-2 text-3xl font-bold text-foreground">Eliminacion de cuenta - Ciclo</h1>
+          <p className="text-muted-foreground">Recurso oficial de Ciclo para solicitudes de eliminacion de cuenta.</p>
+          <Badge variant="secondary" className="mt-3">
+            Aplicacion de reciclaje
           </Badge>
         </div>
 
-        {/* Métodos de Autenticación Soportados */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Shield className="h-5 w-5" />
-              Métodos de Creación de Cuentas Soportados
-            </CardTitle>
-            <CardDescription>
-              Ciclo admite los siguientes métodos para crear y autenticar cuentas de usuario:
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex items-center gap-3 p-3 bg-muted rounded-lg">
-                <User className="h-5 w-5 text-muted-foreground" />
-                <span className="font-medium">Nombre de usuario y contraseña</span>
-              </div>
-              <div className="flex items-center gap-3 p-3 bg-muted rounded-lg">
-                <Mail className="h-5 w-5 text-muted-foreground" />
-                <span className="font-medium">Correo electrónico y contraseña</span>
-              </div>
-              <div className="flex items-center gap-3 p-3 bg-muted rounded-lg">
-                <Phone className="h-5 w-5 text-muted-foreground" />
-                <span className="font-medium">Número de teléfono y verificación</span>
-              </div>
-              <div className="flex items-center gap-3 p-3 bg-muted rounded-lg">
-                <Shield className="h-5 w-5 text-muted-foreground" />
-                <span className="font-medium">OAuth (Google, Facebook)</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Proceso de Eliminación */}
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Trash2 className="h-5 w-5" />
-              Solicitud de Eliminación de Cuenta
+              Solicitar eliminacion de cuenta
             </CardTitle>
             <CardDescription>
-              Sigue estos pasos para solicitar la eliminación de tu cuenta y datos asociados en Ciclo
+              Puedes solicitar la eliminacion de tu cuenta y los datos personales asociados, incluso si ya
+              desinstalaste la aplicacion.
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                  <span className="text-primary font-semibold">1</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">Completa el formulario de solicitud</h3>
-                  <p className="text-gray-600">
-                    Proporciona la información requerida en el formulario a continuación para verificar tu identidad.
-                  </p>
-                </div>
-              </div>
+          <CardContent className="space-y-6">
+            <Alert>
+              <AlertTriangle className="h-4 w-4" />
+              <AlertDescription>
+                Por seguridad, verificaremos que la solicitud corresponda al titular de la cuenta antes de eliminar
+                informacion personal.
+              </AlertDescription>
+            </Alert>
 
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                  <span className="text-primary font-semibold">2</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">Verificación de identidad</h3>
-                  <p className="text-gray-600">
-                    Nuestro equipo verificará tu solicitud y confirmará tu identidad para procesar la eliminación de
-                    forma segura.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                  <span className="text-primary font-semibold">3</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">Procesamiento de la eliminación</h3>
-                  <p className="text-gray-600">
-                    Una vez verificada, procederemos a eliminar tu cuenta y los datos asociados según nuestra política
-                    de retención.
-                  </p>
-                </div>
-              </div>
+            <div className="space-y-3">
+              <h2 className="text-lg font-semibold">Como enviar la solicitud</h2>
+              <ol className="space-y-3 text-sm text-muted-foreground">
+                <li>
+                  <span className="font-medium text-foreground">1. Escribenos desde tu correo registrado.</span>{" "}
+                  Esto ayuda a verificar que eres la persona titular de la cuenta.
+                </li>
+                <li>
+                  <span className="font-medium text-foreground">2. Incluye tus datos de identificacion.</span>{" "}
+                  Envia tu correo registrado, nombre completo y telefono registrado si aplica.
+                </li>
+                <li>
+                  <span className="font-medium text-foreground">3. Espera la confirmacion.</span> Revisaremos la
+                  solicitud y te responderemos con el estado del proceso.
+                </li>
+              </ol>
             </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Button asChild variant="destructive" className="flex-1">
+                <Link href={mailtoHref}>
+                  <Mail className="mr-2 h-4 w-4" />
+                  Enviar solicitud por correo
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="flex-1">
+                <Link href="/">Volver al inicio</Link>
+              </Button>
+            </div>
+
+            <p className="text-sm text-muted-foreground">
+              Si el boton no abre tu aplicacion de correo, envia manualmente tu solicitud a{" "}
+              <a className="font-medium text-primary underline" href={`mailto:${supportEmail}`}>
+                {supportEmail}
+              </a>
+              .
+            </p>
           </CardContent>
         </Card>
 
-        {/* Información sobre Datos */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Shield className="h-5 w-5" />
+              Verificacion y seguridad
+            </CardTitle>
+            <CardDescription>Como protegemos tu cuenta durante el proceso de eliminacion.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4 text-sm text-muted-foreground">
+            <p>
+              No eliminamos cuentas a partir de solicitudes anonimas. Si no puedes escribir desde el correo registrado,
+              podemos pedir informacion adicional para confirmar la titularidad de la cuenta.
+            </p>
+            <p>
+              Nunca solicitaremos tu contrasena. No envies claves, codigos de verificacion ni informacion financiera
+              por correo.
+            </p>
+          </CardContent>
+        </Card>
+
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Database className="h-5 w-5" />
-              Información sobre Datos y Retención
+              Datos eliminados y retenidos
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
-                <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <h3 className="mb-3 flex items-center gap-2 font-semibold text-foreground">
                   <Trash2 className="h-4 w-4" />
-                  Datos que se eliminan inmediatamente:
+                  Datos que se eliminan
                 </h3>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">•</span>
-                    Información personal del perfil (nombre, foto, biografía)
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">•</span>
-                    Historial de actividades de reciclaje
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">•</span>
-                    Puntos y recompensas acumuladas
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">•</span>
-                    Preferencias y configuraciones de la aplicación
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">•</span>
-                    Datos de ubicación y rutas de reciclaje
-                  </li>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>Informacion del perfil, como nombre, foto y telefono.</li>
+                  <li>Datos de autenticacion asociados a la cuenta de Ciclo.</li>
+                  <li>Preferencias y configuraciones de la aplicacion.</li>
+                  <li>Ubicaciones guardadas y datos personales asociados al uso de Ciclo.</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <h3 className="mb-3 flex items-center gap-2 font-semibold text-foreground">
                   <Clock className="h-4 w-4" />
-                  Datos conservados temporalmente:
+                  Datos que pueden conservarse temporalmente
                 </h3>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground">•</span>
-                    Registros de transacciones (30 días) - Por requisitos legales
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground">•</span>
-                    Logs de seguridad (90 días) - Para prevenir fraudes
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground">•</span>
-                    Datos de facturación (7 años) - Por obligaciones fiscales
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-muted-foreground">•</span>
-                    Reportes de problemas técnicos (1 año) - Para mejoras del servicio
-                  </li>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>Registros necesarios para seguridad, prevencion de fraude o soporte.</li>
+                  <li>Informacion que deba conservarse por obligaciones legales, fiscales o regulatorias.</li>
+                  <li>Copias de respaldo hasta que roten segun los ciclos operativos del servicio.</li>
                 </ul>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Formulario de Solicitud */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle>Formulario de Solicitud de Eliminación</CardTitle>
-            <CardDescription>Completa todos los campos requeridos para procesar tu solicitud</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Alert className="mb-6">
-              <AlertTriangle className="h-4 w-4" />
-              <AlertDescription>
-                <strong>Importante:</strong> Esta acción es irreversible. Una vez eliminada tu cuenta, no podrás
-                recuperar tus datos, puntos de reciclaje o historial de actividades.
-              </AlertDescription>
-            </Alert>
-
-            <form className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="fullName">Nombre completo *</Label>
-                  <Input id="fullName" placeholder="Tu nombre completo" required />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Correo electrónico *</Label>
-                  <Input id="email" type="email" placeholder="tu@email.com" required />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="username">Nombre de usuario en Ciclo *</Label>
-                  <Input id="username" placeholder="Tu nombre de usuario" required />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Número de teléfono</Label>
-                  <Input id="phone" type="tel" placeholder="+1234567890" />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="reason">Motivo de la eliminación *</Label>
-                <Textarea
-                  id="reason"
-                  placeholder="Por favor, explica brevemente por qué deseas eliminar tu cuenta"
-                  className="min-h-[100px]"
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="additionalInfo">Información adicional</Label>
-                <Textarea
-                  id="additionalInfo"
-                  placeholder="Cualquier información adicional que consideres relevante"
-                  className="min-h-[80px]"
-                />
-              </div>
-
-              <Separator />
-
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button type="submit" className="flex-1" variant="destructive">
-                  <Trash2 className="h-4 w-4 mr-2" />
-                  Solicitar Eliminación de Cuenta
-                </Button>
-                <Button type="button" variant="outline" className="flex-1 bg-transparent">
-                  Cancelar
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
-
-        {/* Información de Contacto */}
         <Card>
           <CardHeader>
-            <CardTitle>Información de Contacto</CardTitle>
-            <CardDescription>Si tienes preguntas sobre el proceso de eliminación de cuenta</CardDescription>
+            <CardTitle>Informacion de contacto</CardTitle>
+            <CardDescription>Canal oficial para consultas sobre eliminacion de cuenta.</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
-                <h3 className="font-semibold mb-2">Desarrollador</h3>
+                <h3 className="mb-2 font-semibold">Aplicacion</h3>
+                <p className="text-muted-foreground">Ciclo</p>
+              </div>
+              <div>
+                <h3 className="mb-2 font-semibold">Soporte</h3>
+                <a className="text-primary underline" href={`mailto:${supportEmail}`}>
+                  {supportEmail}
+                </a>
+              </div>
+              <div>
+                <h3 className="mb-2 font-semibold">Tiempo estimado de respuesta</h3>
+                <p className="text-muted-foreground">5 a 7 dias habiles</p>
+              </div>
+              <div>
+                <h3 className="mb-2 font-semibold">Desarrollador</h3>
                 <p className="text-muted-foreground">Geovanny Paez</p>
               </div>
-              <div>
-                <h3 className="font-semibold mb-2">Aplicación</h3>
-                <p className="text-muted-foreground">Ciclo - Aplicación de Reciclaje</p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Soporte</h3>
-                <p className="text-muted-foreground">soporte@cicloapp.com</p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Tiempo de respuesta</h3>
-                <p className="text-muted-foreground">5-7 días hábiles</p>
-              </div>
             </div>
+
+            <Separator />
+
+            <p className="text-sm text-muted-foreground">
+              Ultima actualizacion: 13 de julio de 2026.
+            </p>
           </CardContent>
         </Card>
-
-        {/* Footer */}
-        <div className="text-center mt-8 text-sm text-muted-foreground">
-          <p>Esta página cumple con los requisitos de Google Play Store para la eliminación de cuentas de usuario.</p>
-          <p className="mt-1">Última actualización: {new Date().toLocaleDateString("es-ES")}</p>
-        </div>
       </div>
-    </div>
+    </main>
   )
 }
